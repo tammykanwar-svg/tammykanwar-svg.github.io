@@ -1047,7 +1047,8 @@ const FORM_CONFIG = {
   leadForm: {
     status: 'leadStatus', input: 'leadEmail',
     subject: 'New free guide request',
-    success: "Thanks! We'll email your free guide to you shortly."
+    success: "Thanks! Your free guide is ready:",
+    link: { href: 'FPP-Free-Forex-Beginner-Guide.pdf', label: 'Download the guide (PDF)' }
   }
 };
 
@@ -1106,7 +1107,16 @@ function handleFormSubmit(e, formId){
   .then(r => r.json())
   .then(data => {
     if(data.success){
-      setStatus(status, cfg.success, false);
+      setStatus(status, cfg.success, false);if(cfg.link){
+        const a = document.createElement('a');
+        a.href = cfg.link.href;
+        a.textContent = cfg.link.label;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.setAttribute('download', '');
+        a.style.cssText = 'color:var(--gold);font-weight:700;margin-left:6px;text-decoration:underline';
+        status.appendChild(a);
+  }
       input.value = '';
     } else {
       setStatus(status, 'Something went wrong. Please try again.', true);
