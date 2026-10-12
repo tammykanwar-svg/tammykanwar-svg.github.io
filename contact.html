@@ -450,4 +450,165 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   .nav-cta{ width:100%; text-align:center; }
 
   .grid-2, .grid-3, .grid-4{ grid-template-columns:1fr; }
-  .book-card{ flex-directio
+  .book-card{ flex-direction:column; }
+  .book-cover{ width:100%; height:220px; }
+  .footer-grid{ grid-template-columns:1fr; }
+  .section{ padding:64px 0; }
+  .price-card{ padding:32px 26px; }
+  .lead-gen{ padding:32px 24px; }
+}
+
+
+.page-head{padding:90px 0 30px;text-align:center;position:relative;z-index:1}
+.contact-wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start;padding-bottom:90px}
+.contact-card{background:var(--card);border:1px solid var(--border-gold);border-radius:20px;padding:36px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.field input,.field textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--dark3);color:var(--text);font-family:var(--font-body);font-size:1rem}
+.field input:focus,.field textarea:focus{border-color:var(--gold);outline:0}
+.field textarea{resize:vertical;min-height:140px}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px}
+.info-card h3{margin-bottom:.3em}
+.info-card p{margin-bottom:1.2em}
+.info-card a{color:var(--gold);font-weight:600}
+@media (max-width:900px){.contact-wrap{grid-template-columns:1fr}.contact-card{padding:26px}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- ================= NAV ================= -->
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a href="/" class="nav-brand">
+      <span class="brand-mark" aria-hidden="true">FPP</span>
+      <span class="brand-name">ForexProfitPathways</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#learn">Learn</a></li>
+        <li><a href="/#course">Course</a></li>
+        <li><a href="/#books">Books</a></li>
+        <li><a href="/#platform">FPP Platform</a></li>
+        <li><a href="/#founder">About</a></li>
+      </ul>
+      <a href="https://tammyverse44.gumroad.com/l/rwnqvy" class="btn btn-primary nav-cta">Get the Course</a>
+    </div>
+  </nav>
+</header>
+<main id="main">
+<section class="page-head"><div class="container">
+<p class="eyebrow">Get in touch</p>
+<h1>Contact</h1>
+<p class="hero-sub" style="margin:0 auto">Questions about the course, the books or the website? Send a message and we will reply by email.</p>
+</div></section>
+
+<section><div class="container contact-wrap">
+<div class="contact-card">
+<form id="contactForm" novalidate>
+<div class="field"><label for="cName">Name</label><input type="text" id="cName" name="name" autocomplete="name"></div>
+<div class="field"><label for="cEmail">Email</label><input type="email" id="cEmail" name="email" autocomplete="email" required></div>
+<div class="field"><label for="cMsg">Message</label><textarea id="cMsg" name="message" required></textarea></div>
+<button type="submit" class="btn btn-primary">Send message</button>
+<p class="form-status" id="contactStatus" role="status" aria-live="polite" style="text-align:left"></p>
+<p class="fine-print" style="text-align:left">We use your details only to reply. See our <a href="/privacy.html" style="color:var(--gold)">Privacy Policy</a>.</p>
+</form>
+</div>
+<aside class="info-card">
+<h3>Email</h3>
+<p><a href="mailto:tammykanwar@gmail.com">tammykanwar@gmail.com</a></p>
+<h3>Social</h3>
+<p><a href="https://www.instagram.com/forexprofitpathways" target="_blank" rel="noopener">Instagram</a><br><a href="https://www.linkedin.com/in/tammy-kanwar-b4538a339" target="_blank" rel="noopener">LinkedIn</a></p>
+<p class="fine-print" style="text-align:left;margin:0">We do not give trading signals or personal financial advice by email or message.</p>
+</aside>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">FPP</span>
+      <p class="brand-name">ForexProfitPathways</p>
+      <p class="tagline">Learn. Practice. Review. Improve.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Site</h4>
+      <ul>
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#learn">Learn</a></li>
+        <li><a href="/#course">Course</a></li>
+        <li><a href="/#books">Books</a></li>
+        <li><a href="/#platform">FPP Platform</a></li>
+        <li><a href="/#founder">About</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/disclaimer.html">Risk Disclosure</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/forexprofitpathways" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/tammy-kanwar-b4538a339" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© 2026 ForexProfitPathways. All rights reserved.</p>
+    <p class="disclaimer">Educational content only. Trading forex involves substantial risk of loss and is not suitable for every investor. Nothing on this site is financial advice, and no outcome or profit is guaranteed.</p>
+  </div>
+</footer>
+<script>
+const WEB3FORMS_KEY = 'd37fffc9-320a-4f52-9b1d-9c4182b50728';
+const OWNER_EMAIL = 'tammykanwar@gmail.com';
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  if(toggle && menu){
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach(l => l.addEventListener('click', () => {
+      menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false');
+    }));
+  }
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('contactStatus');
+  function say(t, err){ status.textContent = t; status.style.color = err ? 'var(--red)' : 'var(--green)'; }
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const message = document.getElementById('cMsg').value.trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ say('Please enter a valid email address.', true); return; }
+    if(!message){ say('Please write a message.', true); return; }
+    const btn = form.querySelector('button[type="submit"]');
+    const label = btn.textContent; btn.disabled = true; btn.textContent = 'Sending...'; say('', false);
+    fetch('https://api.web3forms.com/submit', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({access_key: WEB3FORMS_KEY, subject:'New contact message', from_name:'ForexProfitPathways', name, email, message})
+    }).then(r => r.json()).then(d => {
+      if(d.success){ say("Message sent. We'll reply by email.", false); form.reset(); }
+      else { say('Something went wrong. Please email ' + OWNER_EMAIL + '.', true); }
+    }).catch(() => say('Network error. Please email ' + OWNER_EMAIL + '.', true))
+    .then(() => { btn.disabled = false; btn.textContent = label; });
+  });
+});
+</script>
+</body>
+</html>
