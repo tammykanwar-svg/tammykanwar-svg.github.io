@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risk & Compounding Simulator | ForexProfitPathways</title>
+<meta name="description" content="Simulate 500 possible futures for your trading account based on risk per trade, win rate and reward ratio.">
+<style>
+:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
+@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
+.brand a{color:var(--ink);text-decoration:none;font-weight:700}
+.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
+h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stack{margin-top:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
+input[type=range]{padding:0;accent-color:var(--teal)}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
+.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
+.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
+dl{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border-bottom:0}
+.stat dt{color:var(--muted);font-size:.9rem}
+.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.loss{color:var(--loss)}.gain{color:var(--gain)}
+.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
+.notice.warn{background:var(--loss-soft)}
+.notice[hidden]{display:none}
+svg.viz{width:100%;display:block;margin-top:14px}
+svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg text.lbl{fill:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:600}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
+.tblwrap{overflow-x:auto}
+.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
+.act.solid{background:var(--teal);color:var(--onteal)}
+.act.danger{border-color:var(--loss);color:var(--loss)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
+.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
+.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
+.opts button:hover{border-color:var(--teal)}
+.bars .bar{margin:10px 0}
+.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
+.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
+ul.tips{padding-left:20px;margin:8px 0 0}
+ul.tips li{margin-bottom:6px}
+.hub{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
+.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tool:hover{border-color:var(--teal)}
+.tool h3{margin:0 0 4px;font-size:1.05rem}
+.tool p{margin:0;color:var(--muted);font-size:.9rem}
+.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
+.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.next h2{font-size:1.4rem;margin:0 0 4px}
+.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
+.btn.primary{background:var(--teal);color:var(--onteal)}
+.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
+.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
+.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
+.foot p{margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a class="alltools" href="tools.html">All free tools</a>
+  </div>
+  <h1>Risk & compounding simulator</h1>
+  <p class="lede">See a range of possible outcomes for your account, including losing streaks and drawdowns, before you risk real money.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Inputs">
+      <div class="field"><label for="bal">Starting balance (USD)</label><input id="bal" type="number" inputmode="decimal" min="1" step="any" value="1000"></div>
+      <div class="row2 field">
+        <div><label for="risk">Risk per trade (%)</label><input id="risk" type="number" inputmode="decimal" min="0.1" max="50" step="any" value="1"></div>
+        <div><label for="win">Win rate (%)</label><input id="win" type="number" inputmode="decimal" min="1" max="99" step="any" value="50"></div></div>
+      <div class="row2 field">
+        <div><label for="rr">Reward : risk</label><input id="rr" type="number" inputmode="decimal" min="0.1" step="any" value="1.5">
+          <div class="hint">1.5 means you win 1.5x what you risk.</div></div>
+        <div><label for="trades">Number of trades</label><input id="trades" type="number" inputmode="numeric" min="10" max="1000" step="1" value="100"></div></div>
+      <div class="actions"><button type="button" class="act solid" id="run">Run again</button></div>
+    </section>
+    <section class="panel" aria-label="Result" aria-live="polite">
+      <div class="result-head">Typical ending balance (median of 500 runs)</div>
+      <div class="big"><span id="med">$0</span></div>
+      <svg class="viz" id="chart" viewBox="0 0 320 200" role="img" aria-label="Simulated account paths"></svg>
+      <dl>
+        <div class="stat"><dt>Bad case (worst 10%)</dt><dd class="loss" id="p10">–</dd></div>
+        <div class="stat"><dt>Good case (best 10%)</dt><dd class="gain" id="p90">–</dd></div>
+        <div class="stat"><dt>Runs ending below start</dt><dd id="below">–</dd></div>
+        <div class="stat"><dt>Typical worst drawdown</dt><dd id="dd">–</dd></div>
+        <div class="stat"><dt>Typical longest losing streak</dt><dd id="streak">–</dd></div>
+        <div class="stat"><dt>Expectancy per trade</dt><dd id="exp">–</dd></div>
+      </dl>
+      <div class="notice" id="note" hidden></div>
+    </section>
+  </div>
+ 
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your numbers. Now build your process.</h2>
+    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h3>How it works</h3><p>The tool plays your numbers 500 times using random wins and losses. Each trade risks the chosen % of the current balance and wins or loses it by the reward ratio. Costs, slippage and changing win rates are not included.</p><p>This is a simulation, not a forecast. Real results can be worse.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+<script>
+(function(){
+
+var $=function(id){return document.getElementById(id);};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)?v:0;}
+function usd(v){var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return (v<0?'-$':'$')+s;}
+
+var RUNS=500;
+function pct(a,p){return a[Math.min(a.length-1,Math.max(0,Math.floor(p*(a.length-1))))];}
+function run(){
+  var bal=num('bal'),risk=num('risk')/100,w=num('win')/100,rr=num('rr'),n=Math.round(num('trades'));
+  var n0=$('note');
+  if(!(bal>0)||!(risk>0)||!(w>0&&w<1)||!(rr>0)||n<10){n0.hidden=false;n0.className='notice warn';n0.textContent='Enter a balance, risk %, win rate between 1 and 99, a reward ratio and at least 10 trades.';return;}
+  if(n>1000)n=1000;
+  var ends=[],dds=[],streaks=[],paths=[],i,t;
+  for(i=0;i<RUNS;i++){
+    var b=bal,peak=bal,mdd=0,cur=0,mx=0,path=(i<25)?[bal]:null;
+    for(t=0;t<n;t++){
+      if(Math.random()<w){b*=1+risk*rr;cur=0;}else{b*=1-risk;cur++;if(cur>mx)mx=cur;}
+      if(b>peak)peak=b;var d=(peak-b)/peak;if(d>mdd)mdd=d;
+      if(path)path.push(b);
+    }
+    ends.push(b);dds.push(mdd);streaks.push(mx);if(path)paths.push(path);
+  }
+  var se=ends.slice().sort(function(a,b){return a-b;}),sd=dds.slice().sort(function(a,b){return a-b;}),ss=streaks.slice().sort(function(a,b){return a-b;});
+  var med=pct(se,0.5),below=ends.filter(function(x){return x<bal;}).length/RUNS*100;
+  var ex=w*rr-(1-w);
+  $('med').textContent=usd(med);$('med').className='big '+(med>=bal?'gain':'loss');
+  $('p10').textContent=usd(pct(se,0.1));$('p90').textContent=usd(pct(se,0.9));
+  $('below').textContent=below.toFixed(0)+'%';
+  $('dd').textContent=(pct(sd,0.5)*100).toFixed(0)+'%';
+  $('streak').textContent=pct(ss,0.5)+' losses in a row';
+  $('exp').textContent=(ex>=0?'+':'')+ex.toFixed(2)+' R';$('exp').className=ex>=0?'gain':'loss';
+  var lo=Infinity,hi=-Infinity;
+  paths.forEach(function(p){p.forEach(function(v){if(v<lo)lo=v;if(v>hi)hi=v;});});
+  if(bal<lo)lo=bal;if(bal>hi)hi=bal;
+  var W=320,H=200,pad=8,span=(hi-lo)||1;
+  function X(k){return pad+k/n*(W-2*pad);}function Y(v){return H-pad-(v-lo)/span*(H-2*pad);}
+  var step=Math.max(1,Math.floor(n/80)),s='';
+  s+='<line x1="'+pad+'" x2="'+(W-pad)+'" y1="'+Y(bal).toFixed(1)+'" y2="'+Y(bal).toFixed(1)+'" stroke="var(--muted)" stroke-dasharray="4 4"/>';
+  paths.forEach(function(p){
+    var pts=[];for(var k=0;k<p.length;k+=step)pts.push(X(k).toFixed(1)+','+Y(p[k]).toFixed(1));
+    pts.push(X(n).toFixed(1)+','+Y(p[p.length-1]).toFixed(1));
+    s+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="var(--teal)" stroke-opacity="0.28" stroke-width="1"/>';
+  });
+  $('chart').innerHTML=s;
+  n0.hidden=false;
+  if(ex<=0){n0.className='notice warn';n0.textContent='With these numbers the math is against you on average. Risking more only speeds up the losses.';}
+  else if(below>=25){n0.className='notice warn';n0.textContent='Even with a positive edge, about '+below.toFixed(0)+'% of runs end below the start. Luck and losing streaks matter over '+n+' trades.';}
+  else{n0.className='notice';n0.textContent='A positive edge helps, but expect drawdowns and losing streaks along the way. Smaller risk per trade makes them easier to survive.';}
+}
+$('run').addEventListener('click',run);
+['bal','risk','win','rr','trades'].forEach(function(id){$(id).addEventListener('change',run);});
+run();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forex Lot Size Calculator | ForexProfitPathways</title>
+<meta name="description" content="Free forex lot size calculator. Enter your account size, risk percentage and stop loss to get the right position size for every trade.">
+<style>
+  :root {
+    --paper: #F1F5F4;
+    --card: #FFFFFF;
+    --ink: #0F2A33;
+    --muted: #55707A;
+    --line: #D3DEDC;
+    --teal: #1B6B75;
+    --teal-soft: #DCEEEF;
+    --loss: #B5452F;
+    --loss-soft: #F6E1DB;
+    --gain: #1F7A52;
+    --gain-soft: #DDF0E6;
+    --focus: #1B6B75;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0E1B20;
+      --card: #162A31;
+      --ink: #E8F0EF;
+      --muted: #94ADB4;
+      --line: #284049;
+      --teal: #5FC0CB;
+      --teal-soft: #1B3B42;
+      --loss: #F08A72;
+      --loss-soft: #3D2620;
+      --gain: #6BD3A0;
+      --gain-soft: #17372A;
+      --focus: #5FC0CB;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 48px; }
+  .brand { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .brand a { color: var(--ink); text-decoration: none; font-weight: 700; letter-spacing: .01em; }
+  .brand span { color: var(--muted); font-size: .9rem; }
+  h1 {
+    font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    line-height: 1.1;
+    margin: 0 0 8px;
+    font-weight: 700;
+  }
+  .lede { color: var(--muted); max-width: 56ch; margin: 0 0 28px; }
+
+  .grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 820px) { .grid { grid-template-columns: 1fr 1.1fr; align-items: start; } }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  label { display: block; font-size: .9rem; font-weight: 600; margin-bottom: 6px; }
+  .hint { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+  input, select {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 11px 12px;
+    min-height: 44px;
+  }
+  input:focus-visible, select:focus-visible, button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 1px;
+  }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button {
+    font: inherit; font-weight: 600; min-height: 44px; border: 0; cursor: pointer;
+    background: var(--paper); color: var(--muted);
+  }
+  .seg button[aria-pressed="true"] { background: var(--teal); color: #fff; }
+  @media (prefers-color-scheme: dark) { .seg button[aria-pressed="true"] { color: #07151A; } }
+
+  .result-head { margin-bottom: 4px; color: var(--muted); font-size: .9rem; }
+  .big {
+    font-family: "Iowan Old Style", Palatino, Georgia, serif;
+    font-size: clamp(2.6rem, 9vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .big small { font-size: 1.1rem; font-weight: 400; color: var(--muted); margin-left: 6px; font-family: system-ui, sans-serif; }
+
+  .ticket { display: grid; grid-template-columns: 1fr 140px; gap: 16px; margin-top: 18px; align-items: stretch; }
+  @media (max-width: 420px) { .ticket { grid-template-columns: 1fr 110px; } }
+  dl { margin: 0; }
+  .stat { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+  .stat:last-child { border-bottom: 0; }
+  .stat dt { color: var(--muted); font-size: .9rem; }
+  .stat dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+  .loss { color: var(--loss); }
+  .gain { color: var(--gain); }
+
+  svg.ladder { width: 100%; height: 100%; min-height: 230px; display: block; }
+  .ladder text { font-size: 10.5px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+  .ladder .lbl { fill: var(--muted); }
+
+  .notice { margin-top: 16px; padding: 10px 12px; border-radius: 8px; font-size: .88rem; background: var(--teal-soft); }
+  .notice.warn { background: var(--loss-soft); }
+  .notice[hidden] { display: none; }
+
+  .next { margin-top: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+  .next h2 { font-family: "Iowan Old Style", Palatino, Georgia, serif; font-size: 1.4rem; margin: 0 0 4px; }
+  .next p { margin: 0 0 16px; color: var(--muted); max-width: 56ch; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 48px; padding: 0 22px; border-radius: 10px;
+    font-weight: 700; text-decoration: none; font-size: 1rem;
+    flex: 1 1 220px;
+  }
+  .btn.primary { background: var(--teal); color: #fff; }
+  .btn.secondary { border: 2px solid var(--teal); color: var(--teal); }
+  .btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #07151A; } }
+
+  .foot { margin-top: 28px; font-size: .82rem; color: var(--muted); max-width: 70ch; }
+  .foot h2 { font-size: 1rem; color: var(--ink); margin: 0 0 6px; }
+  .foot p { margin: 0 0 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a href="tools.html" style="font-weight:600;color:var(--teal);font-size:.92rem">All free tools</a>
+  </div>
+
+  <h1>Lot size calculator</h1>
+  <p class="lede">Decide how much to risk first, then let the stop loss set your position size. Works for major pairs, crosses and gold with a USD account.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Trade inputs">
+      <div class="field">
+        <label for="balance">Account balance (USD)</label>
+        <input id="balance" type="number" inputmode="decimal" min="0" step="any" value="1000">
+      </div>
+
+      <div class="field">
+        <label for="riskPct">Risk per trade (%)</label>
+        <input id="riskPct" type="number" inputmode="decimal" min="0" step="any" value="1">
+        <div class="hint">Most risk-aware traders stay at 1–2% or below.</div>
+      </div>
+
+      <div class="field">
+        <label for="pair">Currency pair</label>
+        <select id="pair"></select>
+      </div>
+
+      <div class="field">
+        <label>Direction</label>
+        <div class="seg" role="group" aria-label="Trade direction">
+          <button type="button" id="buyBtn" aria-pressed="true">Buy</button>
+          <button type="button" id="sellBtn" aria-pressed="false">Sell</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="price">Entry price</label>
+        <input id="price" type="number" inputmode="decimal" min="0" step="any">
+        <div class="hint">Type the current price for an accurate result.</div>
+      </div>
+
+      <div class="field" id="helperField" hidden>
+        <label for="helper" id="helperLabel">Helper price</label>
+        <input id="helper" type="number" inputmode="decimal" min="0" step="any">
+        <div class="hint" id="helperHint">Used to convert pip value into USD.</div>
+      </div>
+
+      <div class="row2 field">
+        <div>
+          <label for="slPips">Stop loss (pips)</label>
+          <input id="slPips" type="number" inputmode="decimal" min="0" step="any" value="20">
+        </div>
+        <div>
+          <label for="tpPips">Take profit (pips)</label>
+          <input id="tpPips" type="number" inputmode="decimal" min="0" step="any" value="40">
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Result" aria-live="polite">
+      <div class="result-head">Position size</div>
+      <div class="big"><span id="lots">0.00</span><small>lots</small></div>
+
+      <div class="ticket">
+        <dl>
+          <div class="stat"><dt>Amount at risk</dt><dd class="loss" id="riskAmt">$0.00</dd></div>
+          <div class="stat"><dt>Potential reward</dt><dd class="gain" id="rewardAmt">$0.00</dd></div>
+          <div class="stat"><dt>Risk : reward</dt><dd id="rr">–</dd></div>
+          <div class="stat"><dt>Units</dt><dd id="units">0</dd></div>
+          <div class="stat"><dt>Mini lots</dt><dd id="mini">0</dd></div>
+          <div class="stat"><dt>Pip value per 1 lot</dt><dd id="pipVal">$0.00</dd></div>
+          <div class="stat"><dt>Value per pip (your size)</dt><dd id="pipYour">$0.00</dd></div>
+        </dl>
+        <svg class="ladder" id="ladder" viewBox="0 0 140 240" role="img" aria-label="Price ladder showing entry, stop loss and take profit"></svg>
+      </div>
+
+      <div class="notice" id="note" hidden></div>
+    </section>
+  </div>
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your size. Now build your process.</h2>
+    <p>Position sizing is one piece. Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h2>How it works</h2>
+    <p>Lot size = amount at risk ÷ (stop loss in pips × pip value per lot). The result is rounded down to 0.01 lots so your real risk never goes above what you chose.</p>
+    <p>Pip = 0.0001 on most pairs, 0.01 on JPY pairs, and 0.10 on gold (XAUUSD, 1 lot = 100 oz). Brokers can differ, so check your platform's contract specs before trading.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var PAIRS = {
+    EURUSD: { base: 'EUR', quote: 'USD', pip: 0.0001, contract: 100000, dec: 5, price: 1.08 },
+    GBPUSD: { base: 'GBP', quote: 'USD', pip: 0.0001, contract: 100000, dec: 5, price: 1.27 },
+    AUDUSD: { base: 'AUD', quote: 'USD', pip: 0.0001, contract: 100000, dec: 5, price: 0.66 },
+    NZDUSD: { base: 'NZD', quote: 'USD', pip: 0.0001, contract: 100000, dec: 5, price: 0.60 },
+    USDJPY: { base: 'USD', quote: 'JPY', pip: 0.01,   contract: 100000, dec: 3, price: 150 },
+    USDCHF: { base: 'USD', quote: 'CHF', pip: 0.0001, contract: 100000, dec: 5, price: 0.88 },
+    USDCAD: { base: 'USD', quote: 'CAD', pip: 0.0001, contract: 100000, dec: 5, price: 1.36 },
+    EURGBP: { base: 'EUR', quote: 'GBP', pip: 0.0001, contract: 100000, dec: 5, price: 0.85 },
+    EURJPY: { base: 'EUR', quote: 'JPY', pip: 0.01,   contract: 100000, dec: 3, price: 162 },
+    GBPJPY: { base: 'GBP', quote: 'JPY', pip: 0.01,   contract: 100000, dec: 3, price: 190 },
+    AUDJPY: { base: 'AUD', quote: 'JPY', pip: 0.01,   contract: 100000, dec: 3, price: 99 },
+    EURCHF: { base: 'EUR', quote: 'CHF', pip: 0.0001, contract: 100000, dec: 5, price: 0.95 },
+    EURAUD: { base: 'EUR', quote: 'AUD', pip: 0.0001, contract: 100000, dec: 5, price: 1.65 },
+    GBPCAD: { base: 'GBP', quote: 'CAD', pip: 0.0001, contract: 100000, dec: 5, price: 1.75 },
+    XAUUSD: { base: 'XAU', quote: 'USD', pip: 0.1,    contract: 100,    dec: 2, price: 2400 }
+  };
+  // How to convert a quote currency into USD
+  var HELPERS = {
+    JPY: { name: 'USDJPY', inverse: true,  def: 150 },
+    CHF: { name: 'USDCHF', inverse: true,  def: 0.88 },
+    CAD: { name: 'USDCAD', inverse: true,  def: 1.36 },
+    GBP: { name: 'GBPUSD', inverse: false, def: 1.27 },
+    AUD: { name: 'AUDUSD', inverse: false, def: 0.66 },
+    NZD: { name: 'NZDUSD', inverse: false, def: 0.60 },
+    EUR: { name: 'EURUSD', inverse: false, def: 1.08 }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var pairSel = $('pair');
+  var direction = 'buy';
+
+  Object.keys(PAIRS).forEach(function (p) {
+    var o = document.createElement('option');
+    o.value = p; o.textContent = p.slice(0, 3) + '/' + p.slice(3);
+    pairSel.appendChild(o);
+  });
+
+  function num(id) { var v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+  function usd(v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+  function loadPair() {
+    var p = PAIRS[pairSel.value];
+    $('price').value = p.price;
+    var needsHelper = p.quote !== 'USD' && p.base !== 'USD';
+    $('helperField').hidden = !needsHelper;
+    if (needsHelper) {
+      var h = HELPERS[p.quote];
+      $('helperLabel').textContent = 'Current ' + h.name + ' price';
+      $('helperHint').textContent = 'Used to convert pip value from ' + p.quote + ' into USD.';
+      $('helper').value = h.def;
+    }
+    calc();
+  }
+
+  function pipValuePerLot(p) {
+    var inQuote = p.pip * p.contract;
+    if (p.quote === 'USD') return inQuote;
+    if (p.base === 'USD') {
+      var px = num('price');
+      return px > 0 ? inQuote / px : 0;
+    }
+    var h = HELPERS[p.quote], r = num('helper');
+    if (!(r > 0)) return 0;
+    return h.inverse ? inQuote / r : inQuote * r;
+  }
+
+  function drawLadder(p, sl, tp) {
+    var svg = $('ladder');
+    var entry = num('price');
+    var buy = direction === 'buy';
+    var top = 22, bottom = 218, midX = 70;
+    var span = Math.max(sl, tp, 1);
+    var half = 98;
+    // Entry sits in the middle; farther level reaches the edge
+    var yEntry = 120;
+    function yFor(pips, up) { return yEntry + (up ? -1 : 1) * (pips / span) * half; }
+    var tpUp = buy, slUp = !buy;
+    var yTP = tp > 0 ? yFor(tp, tpUp) : null;
+    var ySL = sl > 0 ? yFor(sl, slUp) : null;
+    var s = '';
+    // Zones
+    if (yTP !== null) {
+      var y1 = Math.min(yEntry, yTP), h1 = Math.abs(yEntry - yTP);
+      s += '<rect x="48" y="' + y1 + '" width="44" height="' + h1 + '" fill="var(--gain-soft)"/>';
+    }
+    if (ySL !== null) {
+      var y2 = Math.min(yEntry, ySL), h2 = Math.abs(yEntry - ySL);
+      s += '<rect x="48" y="' + y2 + '" width="44" height="' + h2 + '" fill="var(--loss-soft)"/>';
+    }
+    s += '<line x1="70" y1="' + top + '" x2="70" y2="' + bottom + '" stroke="var(--line)" stroke-width="1.5"/>';
+    function level(y, color, name, pips, sign) {
+      var price = entry + sign * pips * p.pip;
+      var t = price > 0 ? price.toFixed(p.dec) : '';
+      return '<line x1="40" y1="' + y + '" x2="100" y2="' + y + '" stroke="' + color + '" stroke-width="2"/>' +
+        '<text x="4" y="' + (y - 4) + '" class="lbl">' + name + '</text>' +
+        '<text x="4" y="' + (y + 11) + '">' + t + '</text>';
+    }
+    if (yTP !== null) s += level(yTP, 'var(--gain)', 'TP', tp, buy ? 1 : -1);
+    if (ySL !== null) s += level(ySL, 'var(--loss)', 'SL', sl, buy ? -1 : 1);
+    s += '<line x1="34" y1="' + yEntry + '" x2="106" y2="' + yEntry + '" stroke="var(--ink)" stroke-width="2.5"/>' +
+      '<text x="4" y="' + (yEntry - 4) + '" class="lbl">Entry</text>' +
+      '<text x="4" y="' + (yEntry + 11) + '">' + (entry > 0 ? entry.toFixed(p.dec) : '') + '</text>';
+    // Pip labels on the right
+    if (yTP !== null) s += '<text x="108" y="' + (yTP + 4) + '" class="lbl">+' + tp + '</text>';
+    if (ySL !== null) s += '<text x="108" y="' + (ySL + 4) + '" class="lbl">-' + sl + '</text>';
+    svg.innerHTML = s;
+  }
+
+  function calc() {
+    var p = PAIRS[pairSel.value];
+    var bal = num('balance'), pct = num('riskPct'), sl = num('slPips'), tp = num('tpPips');
+    var riskAllowed = bal * pct / 100;
+    var pv = pipValuePerLot(p);
+    var note = $('note');
+    var msg = '', warn = false;
+
+    var lots = 0;
+    if (riskAllowed > 0 && sl > 0 && pv > 0) {
+      lots = Math.floor((riskAllowed / (sl * pv)) * 100 + 1e-9) / 100;
+    }
+    var realRisk = lots * sl * pv;
+    var reward = lots * tp * pv;
+
+    $('lots').textContent = lots.toFixed(2);
+    $('riskAmt').textContent = usd(realRisk);
+    $('rewardAmt').textContent = usd(reward);
+    $('rr').textContent = (sl > 0 && tp > 0) ? '1 : ' + (tp / sl).toFixed(2).replace(/\.00$/, '') : '–';
+    $('units').textContent = Math.round(lots * p.contract).toLocaleString('en-US');
+    $('mini').textContent = (lots * 10).toFixed(1).replace(/\.0$/, '');
+    $('pipVal').textContent = usd(pv);
+    $('pipYour').textContent = usd(lots * pv);
+
+    if (pct > 2) {
+      msg = 'Risking more than 2% per trade makes a losing streak very costly. Many traders stay at 1% or less.';
+      warn = true;
+    }
+    if (riskAllowed > 0 && sl > 0 && pv > 0 && lots < 0.01) {
+      var minRisk = 0.01 * sl * pv;
+      msg = 'Your risk is too small for the 0.01 minimum lot. The smallest trade here risks ' + usd(minRisk) +
+        '. Use a tighter stop, a bigger risk %, or check if your broker offers micro lots below 0.01.';
+      warn = true;
+    }
+    if (sl <= 0 && bal > 0) {
+      msg = 'Enter a stop loss in pips to get your position size.';
+    }
+    note.hidden = !msg;
+    note.textContent = msg;
+    note.className = 'notice' + (warn ? ' warn' : '');
+
+    drawLadder(p, sl, tp);
+  }
+
+  function setDir(d) {
+    direction = d;
+    $('buyBtn').setAttribute('aria-pressed', d === 'buy');
+    $('sellBtn').setAttribute('aria-pressed', d === 'sell');
+    calc();
+  }
+
+  $('buyBtn').addEventListener('click', function () { setDir('buy'); });
+  $('sellBtn').addEventListener('click', function () { setDir('sell'); });
+  pairSel.addEventListener('change', loadPair);
+  ['balance', 'riskPct', 'price', 'helper', 'slPips', 'tpPips'].forEach(function (id) {
+    $(id).addEventListener('input', calc);
+  });
+
+  pairSel.value = 'EURUSD';
+  loadPair();
+})();
+</script>
+</body>
+</html>

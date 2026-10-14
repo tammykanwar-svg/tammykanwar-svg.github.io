@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Forex Tools | ForexProfitPathways</title>
+<meta name="description" content="Free forex tools: lot size, risk/reward and pip value calculators, a risk simulator, a trade journal and more.">
+<style>
+:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
+@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
+.brand a{color:var(--ink);text-decoration:none;font-weight:700}
+.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
+h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stack{margin-top:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
+input[type=range]{padding:0;accent-color:var(--teal)}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
+.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
+.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
+dl{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border-bottom:0}
+.stat dt{color:var(--muted);font-size:.9rem}
+.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.loss{color:var(--loss)}.gain{color:var(--gain)}
+.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
+.notice.warn{background:var(--loss-soft)}
+.notice[hidden]{display:none}
+svg.viz{width:100%;display:block;margin-top:14px}
+svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg text.lbl{fill:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:600}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
+.tblwrap{overflow-x:auto}
+.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
+.act.solid{background:var(--teal);color:var(--onteal)}
+.act.danger{border-color:var(--loss);color:var(--loss)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
+.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
+.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
+.opts button:hover{border-color:var(--teal)}
+.bars .bar{margin:10px 0}
+.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
+.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
+ul.tips{padding-left:20px;margin:8px 0 0}
+ul.tips li{margin-bottom:6px}
+.hub{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
+.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tool:hover{border-color:var(--teal)}
+.tool h3{margin:0 0 4px;font-size:1.05rem}
+.tool p{margin:0;color:var(--muted);font-size:.9rem}
+.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
+.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.next h2{font-size:1.4rem;margin:0 0 4px}
+.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
+.btn.primary{background:var(--teal);color:var(--onteal)}
+.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
+.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
+.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
+.foot p{margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a class="alltools" href="tools.html">All free tools</a>
+  </div>
+  <h1>Free forex trading tools</h1>
+  <p class="lede">Simple, free tools built around risk management and discipline. No signup needed.</p>
+  <div class="hub"><a class="tool" href="lot-size-calculator.html"><h3>Lot size calculator</h3><p>Get the right position size from your account, risk % and stop loss.</p><span>Open tool</span></a><a class="tool" href="risk-reward-calculator.html"><h3>Risk/reward calculator</h3><p>Check ratio, breakeven win rate and expectancy before you enter.</p><span>Open tool</span></a><a class="tool" href="pip-value-calculator.html"><h3>Pip value calculator</h3><p>See what each pip is worth in USD for any pair and lot size.</p><span>Open tool</span></a><a class="tool" href="drawdown-recovery-calculator.html"><h3>Drawdown recovery calculator</h3><p>How much profit you need to recover after a loss.</p><span>Open tool</span></a><a class="tool" href="risk-simulator.html"><h3>Risk & compounding simulator</h3><p>Simulate 500 possible futures for your account.</p><span>Open tool</span></a><a class="tool" href="pre-trade-checklist.html"><h3>Pre-trade checklist</h3><p>10 checks to run before every trade.</p><span>Open tool</span></a><a class="tool" href="trading-psychology-quiz.html"><h3>Trading psychology quiz</h3><p>Find the emotional pattern that costs you the most.</p><span>Open tool</span></a><a class="tool" href="trade-journal.html"><h3>Trade journal</h3><p>Log trades and track win rate, R, drawdown and emotions.</p><span>Open tool</span></a></div>
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your numbers. Now build your process.</h2>
+    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h3>Why these tools?</h3><p>They focus on the parts of trading you control: risk, size and your own behavior.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Journal | ForexProfitPathways</title>
+<meta name="description" content="A free forex trade journal. Log trades, track win rate, expectancy and drawdown, and see how emotions affect your results.">
+<style>
+:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
+@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
+.brand a{color:var(--ink);text-decoration:none;font-weight:700}
+.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
+h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stack{margin-top:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
+input[type=range]{padding:0;accent-color:var(--teal)}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
+.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
+.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
+dl{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border-bottom:0}
+.stat dt{color:var(--muted);font-size:.9rem}
+.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.loss{color:var(--loss)}.gain{color:var(--gain)}
+.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
+.notice.warn{background:var(--loss-soft)}
+.notice[hidden]{display:none}
+svg.viz{width:100%;display:block;margin-top:14px}
+svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg text.lbl{fill:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:600}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
+.tblwrap{overflow-x:auto}
+.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
+.act.solid{background:var(--teal);color:var(--onteal)}
+.act.danger{border-color:var(--loss);color:var(--loss)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
+.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
+.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
+.opts button:hover{border-color:var(--teal)}
+.bars .bar{margin:10px 0}
+.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
+.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
+ul.tips{padding-left:20px;margin:8px 0 0}
+ul.tips li{margin-bottom:6px}
+.hub{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
+.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tool:hover{border-color:var(--teal)}
+.tool h3{margin:0 0 4px;font-size:1.05rem}
+.tool p{margin:0;color:var(--muted);font-size:.9rem}
+.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
+.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.next h2{font-size:1.4rem;margin:0 0 4px}
+.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
+.btn.primary{background:var(--teal);color:var(--onteal)}
+.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
+.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
+.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
+.foot p{margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a class="alltools" href="tools.html">All free tools</a>
+  </div>
+  <h1>Trade journal</h1>
+  <p class="lede">Log each trade, then see your win rate, average R, drawdown and which emotions cost you money. Your data stays in your browser.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Add trade">
+      <div class="row2 field">
+        <div><label for="date">Date</label><input id="date" type="date"></div>
+        <div><label for="pair">Pair</label><select id="pair"></select></div></div>
+      <div class="row2 field">
+        <div><label for="dir">Direction</label><select id="dir"><option>Buy</option><option>Sell</option></select></div>
+        <div><label for="emo">How did you feel?</label><select id="emo"><option>Calm</option><option>Confident</option><option>FOMO</option><option>Revenge</option><option>Fear</option><option>Bored</option></select></div></div>
+      <div class="row2 field">
+        <div><label for="risk">Amount risked ($)</label><input id="risk" type="number" inputmode="decimal" min="0" step="any" placeholder="10"></div>
+        <div><label for="pnl">Result ($, loss as -)</label><input id="pnl" type="number" inputmode="decimal" step="any" placeholder="-10 or 25"></div></div>
+      <div class="field"><label for="note">Note (optional)</label><input id="note" type="text" maxlength="120" placeholder="What did you learn?"></div>
+      <div class="actions" style="margin-top:0"><button type="button" class="act solid" id="add">Add trade</button></div>
+      <div class="notice warn" id="msg" hidden></div>
+    </section>
+    <section class="panel" aria-label="Stats" aria-live="polite">
+      <div class="result-head">Total profit / loss</div>
+      <div class="big"><span id="total">$0.00</span></div>
+      <svg class="viz" id="chart" viewBox="0 0 320 130" role="img" aria-label="Equity curve"></svg>
+      <dl>
+        <div class="stat"><dt>Trades</dt><dd id="n">0</dd></div>
+        <div class="stat"><dt>Win rate</dt><dd id="wr">–</dd></div>
+        <div class="stat"><dt>Average R per trade</dt><dd id="er">–</dd></div>
+        <div class="stat"><dt>Average win / loss</dt><dd id="awl">–</dd></div>
+        <div class="stat"><dt>Profit factor</dt><dd id="pf">–</dd></div>
+        <div class="stat"><dt>Max drawdown</dt><dd class="loss" id="mdd">–</dd></div>
+      </dl>
+    </section>
+  </div>
+  <section class="panel stack" aria-label="By emotion">
+    <h2>Results by emotion</h2>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Emotion</th><th>Trades</th><th>Win rate</th><th>Total</th></tr></thead><tbody id="emoRows"></tbody></table></div>
+  </section>
+  <section class="panel stack" aria-label="Trades">
+    <h2>Your trades</h2>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Pair</th><th>Result</th><th>R</th><th>Feeling</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="actions"><button type="button" class="act" id="csv">Download CSV</button><button type="button" class="act danger" id="clear">Delete all</button></div>
+    <div class="hint">Saved only in this browser on this device. Download a CSV now and then as a backup.</div>
+  </section>
+ 
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your numbers. Now build your process.</h2>
+    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h3>How it works</h3><p>R = result ÷ amount risked. A trade that risks $10 and makes $25 is +2.5 R. Average R shows your edge per trade. Max drawdown is the biggest drop from a previous equity peak.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+<script>
+(function(){
+
+var $=function(id){return document.getElementById(id);};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)?v:0;}
+function usd(v){var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return (v<0?'-$':'$')+s;}
+
+var KEY='fpp_journal_v1',mem=[];
+function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):[];}catch(e){return mem.slice();}}
+function save(a){mem=a.slice();try{localStorage.setItem(KEY,JSON.stringify(a));}catch(e){}}
+var entries=load();
+var PAIRS=['EURUSD','GBPUSD','USDJPY','AUDUSD','NZDUSD','USDCAD','USDCHF','EURGBP','EURJPY','GBPJPY','XAUUSD','Other'];
+PAIRS.forEach(function(p){var o=document.createElement('option');o.textContent=p;$('pair').appendChild(o);});
+(function(){var d=new Date();$('date').value=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);})();
+function R(e){return e.risk>0?e.pnl/e.risk:0;}
+function cell(tr,text,cls){var td=document.createElement('td');td.textContent=text;if(cls)td.className=cls;tr.appendChild(td);return td;}
+function render(){
+  var a=entries,n=a.length,wins=a.filter(function(e){return e.pnl>0;}),loss=a.filter(function(e){return e.pnl<0;});
+  var total=a.reduce(function(s,e){return s+e.pnl;},0);
+  var gw=wins.reduce(function(s,e){return s+e.pnl;},0),gl=-loss.reduce(function(s,e){return s+e.pnl;},0);
+  var sumR=a.reduce(function(s,e){return s+R(e);},0);
+  $('total').textContent=usd(total);$('total').className='big '+(total>=0?'gain':'loss');
+  $('n').textContent=n;
+  $('wr').textContent=n?(wins.length/n*100).toFixed(0)+'%':'–';
+  $('er').textContent=n?((sumR/n>=0?'+':'')+(sumR/n).toFixed(2)+' R'):'–';
+  $('awl').textContent=n?(usd(wins.length?gw/wins.length:0)+' / '+usd(loss.length?-gl/loss.length:0)):'–';
+  $('pf').textContent=n?(gl>0?(gw/gl).toFixed(2):(gw>0?'No losses yet':'–')):'–';
+  var cum=0,peak=0,dd=0,pts=[0];
+  a.forEach(function(e){cum+=e.pnl;pts.push(cum);if(cum>peak)peak=cum;if(peak-cum>dd)dd=peak-cum;});
+  $('mdd').textContent=n?usd(-dd):'–';
+  var W=320,H=130,pad=10,lo=Math.min.apply(null,pts),hi=Math.max.apply(null,pts);
+  if(hi===lo){hi+=1;lo-=1;}
+  function X(i){return pad+(pts.length>1?i/(pts.length-1):0)*(W-2*pad);}
+  function Y(v){return H-pad-(v-lo)/(hi-lo)*(H-2*pad);}
+  var s='<line x1="'+pad+'" x2="'+(W-pad)+'" y1="'+Y(0).toFixed(1)+'" y2="'+Y(0).toFixed(1)+'" stroke="var(--muted)" stroke-dasharray="4 4"/>';
+  if(pts.length>1){s+='<polyline fill="none" stroke="var(--teal)" stroke-width="2" points="'+pts.map(function(v,i){return X(i).toFixed(1)+','+Y(v).toFixed(1);}).join(' ')+'"/>';}
+  else{s+='<text x="'+pad+'" y="70" class="lbl">Add trades to see your equity curve.</text>';}
+  $('chart').innerHTML=s;
+  var emo={};a.forEach(function(e){var k=e.emo||'Calm';if(!emo[k])emo[k]={n:0,w:0,t:0};emo[k].n++;if(e.pnl>0)emo[k].w++;emo[k].t+=e.pnl;});
+  var eb=$('emoRows');eb.innerHTML='';
+  var keys=Object.keys(emo);
+  if(!keys.length){var r0=document.createElement('tr');cell(r0,'No trades yet');cell(r0,'');cell(r0,'');cell(r0,'');eb.appendChild(r0);}
+  keys.forEach(function(k){var tr=document.createElement('tr');cell(tr,k);cell(tr,emo[k].n);cell(tr,(emo[k].w/emo[k].n*100).toFixed(0)+'%');cell(tr,usd(emo[k].t),emo[k].t>=0?'gain':'loss');eb.appendChild(tr);});
+  var rb=$('rows');rb.innerHTML='';
+  a.slice().reverse().forEach(function(e){
+    var tr=document.createElement('tr');
+    cell(tr,e.date);cell(tr,e.pair+' '+e.dir);cell(tr,usd(e.pnl),e.pnl>=0?'gain':'loss');
+    cell(tr,e.risk>0?(R(e)>=0?'+':'')+R(e).toFixed(2):'–');cell(tr,e.emo);
+    var td=document.createElement('td');var b=document.createElement('button');b.type='button';b.className='act';b.textContent='Delete';b.style.minHeight='34px';b.style.padding='0 10px';
+    b.addEventListener('click',function(){entries=entries.filter(function(x){return x.id!==e.id;});save(entries);render();});
+    td.appendChild(b);tr.appendChild(td);rb.appendChild(tr);
+  });
+}
+$('add').addEventListener('click',function(){
+  var risk=num('risk'),pnlRaw=$('pnl').value,m=$('msg');
+  if(!(risk>0)||pnlRaw===''||!isFinite(parseFloat(pnlRaw))){m.hidden=false;m.textContent='Enter the amount you risked and the result of the trade.';return;}
+  m.hidden=true;
+  entries.push({id:Date.now()+Math.random(),date:$('date').value,pair:$('pair').value,dir:$('dir').value,risk:risk,pnl:parseFloat(pnlRaw),emo:$('emo').value,note:$('note').value});
+  save(entries);$('risk').value='';$('pnl').value='';$('note').value='';render();
+});
+$('csv').addEventListener('click',function(){
+  var rows=[['Date','Pair','Direction','Risk','Result','R','Feeling','Note']];
+  entries.forEach(function(e){rows.push([e.date,e.pair,e.dir,e.risk,e.pnl,R(e).toFixed(2),e.emo,e.note||'']);});
+  var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var blob=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fpp-trade-journal.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+});
+$('clear').addEventListener('click',function(){if(entries.length&&confirm('Delete all trades? This cannot be undone.')){entries=[];save(entries);render();}});
+render();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pip Value Calculator | ForexProfitPathways</title>
+<meta name="description" content="Find the value of one pip in USD for any forex pair and lot size.">
+<style>
+:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
+@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
+.brand a{color:var(--ink);text-decoration:none;font-weight:700}
+.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
+h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stack{margin-top:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
+input[type=range]{padding:0;accent-color:var(--teal)}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
+.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
+.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
+dl{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border-bottom:0}
+.stat dt{color:var(--muted);font-size:.9rem}
+.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.loss{color:var(--loss)}.gain{color:var(--gain)}
+.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
+.notice.warn{background:var(--loss-soft)}
+.notice[hidden]{display:none}
+svg.viz{width:100%;display:block;margin-top:14px}
+svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg text.lbl{fill:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:600}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
+.tblwrap{overflow-x:auto}
+.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
+.act.solid{background:var(--teal);color:var(--onteal)}
+.act.danger{border-color:var(--loss);color:var(--loss)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
+.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
+.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
+.opts button:hover{border-color:var(--teal)}
+.bars .bar{margin:10px 0}
+.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
+.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
+ul.tips{padding-left:20px;margin:8px 0 0}
+ul.tips li{margin-bottom:6px}
+.hub{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
+.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tool:hover{border-color:var(--teal)}
+.tool h3{margin:0 0 4px;font-size:1.05rem}
+.tool p{margin:0;color:var(--muted);font-size:.9rem}
+.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
+.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.next h2{font-size:1.4rem;margin:0 0 4px}
+.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
+.btn.primary{background:var(--teal);color:var(--onteal)}
+.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
+.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
+.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
+.foot p{margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a class="alltools" href="tools.html">All free tools</a>
+  </div>
+  <h1>Pip value calculator</h1>
+  <p class="lede">See how much each pip is worth in dollars for your pair and lot size, and what a move of any size means for your account.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Inputs">
+      <div class="field"><label for="pair">Currency pair</label><select id="pair"></select></div>
+      <div class="field"><label for="lots">Lot size</label>
+        <input id="lots" type="number" inputmode="decimal" min="0" step="any" value="1"></div>
+      <div class="field"><label for="price">Current price</label>
+        <input id="price" type="number" inputmode="decimal" min="0" step="any">
+        <div class="hint">Type the current price for an accurate result.</div></div>
+      <div class="field" id="helperField" hidden><label for="helper" id="helperLabel">Helper price</label>
+        <input id="helper" type="number" inputmode="decimal" min="0" step="any">
+        <div class="hint" id="helperHint"></div></div>
+      <div class="field"><label for="pips">Pips moved</label>
+        <input id="pips" type="number" inputmode="decimal" step="any" value="10"></div>
+    </section>
+    <section class="panel" aria-label="Result" aria-live="polite">
+      <div class="result-head">Value of 1 pip at your lot size</div>
+      <div class="big"><span id="mine">$0.00</span></div>
+      <dl>
+        <div class="stat"><dt>Per 1.00 standard lot</dt><dd id="std">$0.00</dd></div>
+        <div class="stat"><dt>Per 0.10 mini lot</dt><dd id="mini">$0.00</dd></div>
+        <div class="stat"><dt>Per 0.01 micro lot</dt><dd id="micro">$0.00</dd></div>
+        <div class="stat"><dt id="moveLabel">Move of 10 pips</dt><dd id="move">$0.00</dd></div>
+      </dl>
+      <div class="notice">Results are in USD. Brokers can differ slightly, so check your platform's contract specs.</div>
+    </section>
+  </div>
+ 
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your numbers. Now build your process.</h2>
+    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h3>How it works</h3><p>Pip = 0.0001 on most pairs, 0.01 on JPY pairs and 0.10 on gold. Pip value per lot = pip size × contract size, converted into USD using the current price of the pair or a helper pair.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+<script>
+(function(){
+
+var $=function(id){return document.getElementById(id);};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)?v:0;}
+function usd(v){var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return (v<0?'-$':'$')+s;}
+
+var PAIRS={
+ EURUSD:{base:'EUR',quote:'USD',pip:0.0001,contract:100000,price:1.08},
+ GBPUSD:{base:'GBP',quote:'USD',pip:0.0001,contract:100000,price:1.27},
+ AUDUSD:{base:'AUD',quote:'USD',pip:0.0001,contract:100000,price:0.66},
+ NZDUSD:{base:'NZD',quote:'USD',pip:0.0001,contract:100000,price:0.60},
+ USDJPY:{base:'USD',quote:'JPY',pip:0.01,contract:100000,price:150},
+ USDCHF:{base:'USD',quote:'CHF',pip:0.0001,contract:100000,price:0.88},
+ USDCAD:{base:'USD',quote:'CAD',pip:0.0001,contract:100000,price:1.36},
+ EURGBP:{base:'EUR',quote:'GBP',pip:0.0001,contract:100000,price:0.85},
+ EURJPY:{base:'EUR',quote:'JPY',pip:0.01,contract:100000,price:162},
+ GBPJPY:{base:'GBP',quote:'JPY',pip:0.01,contract:100000,price:190},
+ AUDJPY:{base:'AUD',quote:'JPY',pip:0.01,contract:100000,price:99},
+ EURCHF:{base:'EUR',quote:'CHF',pip:0.0001,contract:100000,price:0.95},
+ EURAUD:{base:'EUR',quote:'AUD',pip:0.0001,contract:100000,price:1.65},
+ GBPCAD:{base:'GBP',quote:'CAD',pip:0.0001,contract:100000,price:1.75},
+ XAUUSD:{base:'XAU',quote:'USD',pip:0.1,contract:100,price:2400}
+};
+var HELPERS={
+ JPY:{name:'USDJPY',inverse:true,def:150},CHF:{name:'USDCHF',inverse:true,def:0.88},CAD:{name:'USDCAD',inverse:true,def:1.36},
+ GBP:{name:'GBPUSD',inverse:false,def:1.27},AUD:{name:'AUDUSD',inverse:false,def:0.66},NZD:{name:'NZDUSD',inverse:false,def:0.60},EUR:{name:'EURUSD',inverse:false,def:1.08}
+};
+
+var sel=$('pair');
+Object.keys(PAIRS).forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p.slice(0,3)+'/'+p.slice(3);sel.appendChild(o);});
+function load(){
+  var p=PAIRS[sel.value];$('price').value=p.price;
+  var need=p.quote!=='USD'&&p.base!=='USD';$('helperField').hidden=!need;
+  if(need){var h=HELPERS[p.quote];$('helperLabel').textContent='Current '+h.name+' price';$('helperHint').textContent='Used to convert pip value from '+p.quote+' into USD.';$('helper').value=h.def;}
+  calc();
+}
+function pvLot(p){
+  var q=p.pip*p.contract;
+  if(p.quote==='USD')return q;
+  if(p.base==='USD'){var px=num('price');return px>0?q/px:0;}
+  var h=HELPERS[p.quote],r=num('helper');if(!(r>0))return 0;
+  return h.inverse?q/r:q*r;
+}
+function calc(){
+  var p=PAIRS[sel.value],pv=pvLot(p),lots=num('lots'),pips=num('pips');
+  $('mine').textContent=usd(pv*lots);
+  $('std').textContent=usd(pv);$('mini').textContent=usd(pv*0.1);$('micro').textContent=usd(pv*0.01);
+  $('moveLabel').textContent='Move of '+pips+' pips';
+  var m=pv*lots*pips;$('move').textContent=usd(m);$('move').className=m>=0?'gain':'loss';
+}
+sel.addEventListener('change',load);
+['lots','price','helper','pips'].forEach(function(id){$(id).addEventListener('input',calc);});
+sel.value='EURUSD';load();
+
+})();
+</script>
+</body>
+</html>

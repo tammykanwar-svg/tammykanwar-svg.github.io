@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drawdown Recovery Calculator | ForexProfitPathways</title>
+<meta name="description" content="See how much profit you need to recover from a trading loss. A 50% loss needs a 100% gain.">
+<style>
+:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
+@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
+.brand a{color:var(--ink);text-decoration:none;font-weight:700}
+.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
+h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
+h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
+.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.stack{margin-top:20px}
+.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
+input[type=range]{padding:0;accent-color:var(--teal)}
+input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
+.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
+.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
+dl{margin:14px 0 0}
+.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border-bottom:0}
+.stat dt{color:var(--muted);font-size:.9rem}
+.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
+.loss{color:var(--loss)}.gain{color:var(--gain)}
+.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
+.notice.warn{background:var(--loss-soft)}
+.notice[hidden]{display:none}
+svg.viz{width:100%;display:block;margin-top:14px}
+svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
+svg text.lbl{fill:var(--muted)}
+.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:600}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
+.tblwrap{overflow-x:auto}
+.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
+.act.solid{background:var(--teal);color:var(--onteal)}
+.act.danger{border-color:var(--loss);color:var(--loss)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
+.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
+.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
+.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
+.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
+.opts button:hover{border-color:var(--teal)}
+.bars .bar{margin:10px 0}
+.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
+.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
+ul.tips{padding-left:20px;margin:8px 0 0}
+ul.tips li{margin-bottom:6px}
+.hub{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
+.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.tool:hover{border-color:var(--teal)}
+.tool h3{margin:0 0 4px;font-size:1.05rem}
+.tool p{margin:0;color:var(--muted);font-size:.9rem}
+.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
+.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.next h2{font-size:1.4rem;margin:0 0 4px}
+.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
+.btn.primary{background:var(--teal);color:var(--onteal)}
+.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
+.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
+.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
+.foot p{margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
+    <a class="alltools" href="tools.html">All free tools</a>
+  </div>
+  <h1>Drawdown recovery calculator</h1>
+  <p class="lede">Losses are harder to win back than they look. Enter your loss and see the gain you need just to get back to even.</p>
+
+  <div class="grid">
+    <section class="panel" aria-label="Inputs">
+      <div class="field"><label for="bal">Starting balance (USD)</label>
+        <input id="bal" type="number" inputmode="decimal" min="0" step="any" value="1000"></div>
+      <div class="field"><label for="loss">Loss so far (%)</label>
+        <input id="loss" type="number" inputmode="decimal" min="0" max="99" step="any" value="20">
+        <input id="lossRange" type="range" min="1" max="95" step="1" value="20" aria-label="Loss percentage slider" style="margin-top:10px"></div>
+    </section>
+    <section class="panel" aria-label="Result" aria-live="polite">
+      <div class="result-head">Gain needed to get back to even</div>
+      <div class="big"><span id="need">25</span><small>%</small></div>
+      <dl>
+        <div class="stat"><dt>Balance after the loss</dt><dd class="loss" id="after">$0.00</dd></div>
+        <div class="stat"><dt>Amount to win back</dt><dd class="gain" id="back">$0.00</dd></div>
+      </dl>
+      <svg class="viz" id="viz" viewBox="0 0 300 92" role="img" aria-label="Loss compared with gain needed"></svg>
+      <div class="notice" id="note" hidden></div>
+    </section>
+  </div>
+  <section class="panel stack" aria-label="Recovery table">
+    <h2>Loss vs gain needed</h2>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Loss</th><th>Gain needed</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </section>
+ 
+
+  <section class="next" aria-label="Keep learning">
+    <h2>Know your numbers. Now build your process.</h2>
+    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
+    <div class="btns">
+      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
+      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <h3>How it works</h3><p>Gain needed = loss ÷ (100 − loss). After losing 50%, you hold half your money, so you must double what is left (+100%) to return to the start. This is why protecting capital comes before chasing profit.</p>
+    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+  </div>
+</div>
+<script>
+(function(){
+
+var $=function(id){return document.getElementById(id);};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)?v:0;}
+function usd(v){var s=Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return (v<0?'-$':'$')+s;}
+
+function need(l){return l/(100-l)*100;}
+function fmt(v){if(v>=100)return Math.round(v).toLocaleString('en-US');return v.toFixed(1).replace(/\.0$/,'');}
+function lossVal(){var l=num('loss');if(l<0)l=0;if(l>99)l=99;return l;}
+var LIST=[5,10,15,20,25,30,40,50,60,70,80,90];
+function calc(){
+  var bal=num('bal'),l=lossVal(),after=bal*(1-l/100),gain=need(l);
+  $('need').textContent=fmt(gain);
+  $('after').textContent=usd(after);
+  $('back').textContent=usd(bal-after);
+  var max=Math.max(100,gain),w1=l/max*210,w2=gain/max*210;
+  $('viz').innerHTML=
+    '<text x="0" y="12" class="lbl">Loss</text>'+
+    '<rect x="0" y="18" width="'+w1.toFixed(1)+'" height="16" rx="3" fill="var(--loss)"/>'+
+    '<text x="'+(w1+6).toFixed(1)+'" y="31">'+fmt(l)+'%</text>'+
+    '<text x="0" y="56" class="lbl">Gain needed to recover</text>'+
+    '<rect x="0" y="62" width="'+w2.toFixed(1)+'" height="16" rx="3" fill="var(--gain)"/>'+
+    '<text x="'+(w2+6).toFixed(1)+'" y="75">'+fmt(gain)+'%</text>';
+  var n=$('note');
+  if(l>=50){n.hidden=false;n.className='notice warn';n.textContent='A loss this deep needs more than a 100% gain to recover. The best fix is keeping losses small in the first place.';}
+  else if(l>=20){n.hidden=false;n.className='notice';n.textContent='Recovery gets steeper with every extra percent lost. Stopping at your daily loss limit protects you from this.';}
+  else{n.hidden=true;}
+  var h='';
+  LIST.forEach(function(x){h+='<tr'+(Math.round(l)===x?' class="hl"':'')+'><td>'+x+'%</td><td>'+fmt(need(x))+'%</td></tr>';});
+  $('rows').innerHTML=h;
+}
+$('loss').addEventListener('input',function(){var v=lossVal();$('lossRange').value=Math.min(95,Math.max(1,Math.round(v)));calc();});
+$('lossRange').addEventListener('input',function(){$('loss').value=$('lossRange').value;calc();});
+$('bal').addEventListener('input',calc);
+calc();
+
+})();
+</script>
+</body>
+</html>
