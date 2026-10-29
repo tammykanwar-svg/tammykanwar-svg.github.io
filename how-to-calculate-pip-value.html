@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Calculate Pip Value in Forex (With Formulas and Examples)</title>
+<meta name="description" content="Learn how to calculate pip value for any forex pair and lot size. Step by step formulas with EUR/USD, USD/JPY and USD/CAD examples, plus a free calculator.">
+<link rel="canonical" href="https://forexprofitpathways.com/how-to-calculate-pip-value.html">
+<meta property="og:title" content="How to Calculate Pip Value in Forex (With Formulas and Examples)">
+<meta property="og:description" content="Learn how to calculate pip value for any forex pair and lot size. Step by step formulas with EUR/USD, USD/JPY and USD/CAD examples, plus a free calculator.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://forexprofitpathways.com/how-to-calculate-pip-value.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the pip value formula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pip value = pip size multiplied by position size in units. If the quote currency is not your account currency, convert the result using the current exchange rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is one pip worth on EUR/USD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a USD account, about $10 for a standard lot, $1 for a mini lot and $0.10 for a micro lot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is pip value different on USD/JPY?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yen pairs use a pip size of 0.01 and the result is first in yen, so it has to be converted to your account currency. At a rate of 150, one standard lot is about $6.67 per pip."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does pip value change over time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for pairs where the pip value needs conversion. It changes slightly as the exchange rate moves."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{--bg:#fff;--text:#1d232b;--muted:#5a6573;--line:#dfe4ea;--accent:#0f5c4d;--soft:#eef5f3;--warn:#fff6e5;--warn-line:#e8c98a}
+  @media (prefers-color-scheme:dark){:root{--bg:#12171c;--text:#e6eaee;--muted:#9aa5b1;--line:#2a323b;--accent:#5fc4ad;--soft:#18221f;--warn:#2a2415;--warn-line:#6b5a2c}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.7}
+  .nav{border-bottom:1px solid var(--line);padding:14px 20px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15px}
+  .nav a{color:var(--accent);text-decoration:none;margin-right:18px;font-weight:600}
+  main{max-width:720px;margin:0 auto;padding:28px 20px 60px}
+  h1{font-size:2rem;line-height:1.2;margin:0 0 12px}
+  h2{font-size:1.45rem;line-height:1.3;margin:2.2rem 0 .6rem}
+  h3{font-size:1.15rem;margin:1.6rem 0 .4rem}
+  .meta{color:var(--muted);font-family:system-ui,sans-serif;font-size:14px;margin-bottom:22px}
+  a{color:var(--accent)}
+  .answer{background:var(--soft);border-left:4px solid var(--accent);padding:14px 18px;margin:18px 0}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:16px;font-family:system-ui,sans-serif}
+  th,td{border:1px solid var(--line);padding:9px 10px;text-align:left}
+  th{background:var(--soft)}
+  .tool{border:1px solid var(--line);padding:16px 18px;margin:26px 0;font-family:system-ui,sans-serif;font-size:16px}
+  .disclaimer{background:var(--warn);border:1px solid var(--warn-line);padding:14px 18px;margin-top:40px;font-family:system-ui,sans-serif;font-size:14px;line-height:1.6}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:.92em}
+  footer{border-top:1px solid var(--line);padding:20px;text-align:center;font-family:system-ui,sans-serif;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="tools.html">Tools</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+<main>
+  <article>
+    <h1>How to Calculate Pip Value in Forex: Formulas and Examples</h1>
+    <div class="meta">By Forex Profit Pathways &middot; Updated 30 October 2026 &middot; 7 min read</div>
+    <div class="answer"><strong>Short answer:</strong> Pip value = (pip size &times; position size in units) / exchange rate, where you divide by the rate only when your account currency is not the quote currency. For EUR/USD on a USD account, 1 standard lot is worth $10 per pip.</div>
+
+    <p>Knowing the pip value tells you how many dollars (or euros, or any account currency) each pip of movement is worth in your trade. Without it you cannot size a position or set a sensible stop loss. If the word pip is new to you, start with <a href="what-is-a-pip-in-forex.html">what a pip is in forex</a>.</p>
+
+    <h2>The basic formula</h2>
+    <p><code>Pip value (in quote currency) = pip size &times; position size in units</code></p>
+    <p>Pip size is 0.0001 for most pairs and 0.01 for yen pairs. Position size in units is 100,000 for 1 standard lot, 10,000 for a mini lot, and 1,000 for a micro lot.</p>
+    <p>The result is in the <strong>quote currency</strong> (the second currency in the pair). If that is not your account currency, you convert it.</p>
+
+    <h2>Case 1: USD is the quote currency (EUR/USD, GBP/USD, AUD/USD)</h2>
+    <p>On a USD account no conversion is needed.</p>
+    <p>EUR/USD, 1 standard lot: 0.0001 &times; 100,000 = <strong>$10 per pip</strong>.<br>
+    EUR/USD, 1 mini lot: 0.0001 &times; 10,000 = <strong>$1 per pip</strong>.</p>
+
+    <h2>Case 2: USD is the base currency (USD/CAD, USD/CHF, USD/JPY)</h2>
+    <p>The pip value comes out in the quote currency, so divide by the current exchange rate to get dollars.</p>
+
+    <h3>USD/CAD example</h3>
+    <p>1 standard lot at a rate of 1.3600: 0.0001 &times; 100,000 = 10 CAD. Then 10 / 1.36 = about <strong>$7.35 per pip</strong>.</p>
+
+    <h3>USD/JPY example</h3>
+    <p>1 mini lot at a rate of 150.00: 0.01 &times; 10,000 = 100 JPY. Then 100 / 150 = about <strong>$0.67 per pip</strong>.</p>
+
+    <h2>Case 3: cross pairs (EUR/GBP, GBP/JPY, EUR/JPY)</h2>
+    <p>Neither currency is USD. Calculate the pip value in the quote currency, then convert that currency to your account currency.</p>
+    <p>GBP/JPY, 1 standard lot: 0.01 &times; 100,000 = 1,000 JPY per pip. If USD/JPY is 150, then 1,000 / 150 = about <strong>$6.67 per pip</strong>.</p>
+
+    <h2>Quick reference table</h2>
+    <table>
+      <thead><tr><th>Pair (USD account)</th><th>Standard lot</th><th>Mini lot</th><th>Micro lot</th></tr></thead>
+      <tbody>
+        <tr><td>EUR/USD</td><td>$10</td><td>$1</td><td>$0.10</td></tr>
+        <tr><td>USD/CAD at 1.36</td><td>$7.35</td><td>$0.74</td><td>$0.07</td></tr>
+        <tr><td>USD/JPY at 150</td><td>$6.67</td><td>$0.67</td><td>$0.07</td></tr>
+      </tbody>
+    </table>
+    <p>Values are approximate and change as exchange rates change.</p>
+
+    <div class="tool">
+      <strong>Do it automatically.</strong> The free <a href="pip-value-calculator.html">Pip Value Calculator</a> handles pair, lot size and account currency for you.
+    </div>
+
+    <h2>Why pip value matters</h2>
+    <p>Once you know the pip value, you can turn a stop loss from pips into money. A 25 pip stop on a mini lot of EUR/USD risks 25 &times; $1 = $25. Next, use that number to choose your position size. Our guide on <a href="how-to-calculate-lot-size-in-forex.html">how to calculate lot size</a> shows the full process, and <a href="what-is-lot-size-in-forex.html">what lot size is in forex</a> explains the lot types.</p>
+
+    <h2>Common mistakes</h2>
+    <ul>
+      <li><strong>Using $10 for every pair.</strong> That figure is only right for pairs where USD is the quote currency and the account is in USD.</li>
+      <li><strong>Forgetting yen pairs use 0.01.</strong> Using 0.0001 gives a value 100 times too small.</li>
+      <li><strong>Using an old exchange rate.</strong> Pip value moves with the rate, so a small difference is normal.</li>
+      <li><strong>Ignoring the account currency.</strong> If your account is in EUR or GBP, the final conversion is different.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <h3>What is the pip value formula?</h3>
+    <p>Pip value = pip size multiplied by position size in units. If the quote currency is not your account currency, convert the result using the current exchange rate.</p>
+    <h3>How much is one pip worth on EUR/USD?</h3>
+    <p>On a USD account, about $10 for a standard lot, $1 for a mini lot and $0.10 for a micro lot.</p>
+    <h3>Why is pip value different on USD/JPY?</h3>
+    <p>Yen pairs use a pip size of 0.01 and the result is first in yen, so it has to be converted to your account currency. At a rate of 150, one standard lot is about $6.67 per pip.</p>
+    <h3>Does pip value change over time?</h3>
+    <p>Yes, for pairs where the pip value needs conversion. It changes slightly as the exchange rate moves.</p>
+
+    <p>Next, read <a href="how-to-calculate-lot-size-in-forex.html">how to calculate lot size</a> to turn pip value into a safe position size.</p>
+
+    <div class="disclaimer">
+      <strong>Risk disclaimer:</strong> Trading forex and leveraged products carries a high level of risk and may not be suitable for everyone. You can lose more than you invest. This article is for educational purposes only and is not financial advice. Read our full <a href="disclaimer.html">Risk Disclaimer</a>.
+    </div>
+  </article>
+</main>
+<footer>
+  &copy; 2026 Forex Profit Pathways &middot; <a href="privacy.html">Privacy</a> &middot; <a href="disclaimer.html">Disclaimer</a> &middot; <a href="contact.html">Contact</a>
+</footer>
+</body>
+                                                     </html>
