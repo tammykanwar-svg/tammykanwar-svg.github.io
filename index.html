@@ -72,28 +72,28 @@
 
 <style>
 /* =========================================================
-   ForexProfitPathways — Theme (matches current live-site brand)
+   ForexProfitPathways â€” Theme (matches current live-site brand)
    Gold / dark, Playfair Display + DM Sans
    ========================================================= */
 :root{
-  --gold: #C9A84C;
-  --gold-light: #F0D080;
-  --gold-dark: #8A6A1F;
-  --dark: #0A0D12;
-  --dark2: #10141C;
-  --dark3: #181E2A;
-  --card: #141920;
-  --card-hover: #1a2030;
-  --text: #E8E4D9;
-  --text-muted: #8A8F9A;
+  --gold: #65e7ff;
+  --gold-light: #a8f3ff;
+  --gold-dark: #6255c9;
+  --dark: #050713;
+  --dark2: #0b1229;
+  --dark3: #111a36;
+  --card: #101831;
+  --card-hover: #172449;
+  --text: #f4f7ff;
+  --text-muted: #a1a9c2;
   --green: #2ECC71;
   --red: #E74C3C;
   --accent: #1A6EFF;
   --border: rgba(255,255,255,.06);
-  --border-gold: rgba(201,168,76,.3);
+  --border-gold: rgba(150,174,255,.22);
 
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Manrope', sans-serif;
+  --font-body: 'Manrope', sans-serif;
 
   --container: 1180px;
 }
@@ -116,7 +116,7 @@ body{
   position:relative;
 }
 
-/* Noise texture overlay — matches current site */
+/* Noise texture overlay â€” matches current site */
 body::before{
   content:'';
   position:fixed; inset:0;
@@ -310,8 +310,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
 }
 .card:hover{ transform:translateY(-6px); border-color:var(--border-gold); background:var(--card-hover); }
 .card:hover::before{ opacity:1; }
-.card-icon{
-  width:48px; height:48px; background:rgba(201,168,76,.1); border-radius:12px;
+.card-icon{  width:48px; height:48px; background:rgba(201,168,76,.1); border-radius:12px;
   display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:20px;
   color:var(--gold);
 }
@@ -372,7 +371,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   font-size:.95rem; color:var(--text); padding:10px 0; padding-left:26px; position:relative;
   border-bottom:1px solid var(--border);
 }
-.price-list li::before{ content:'✓'; position:absolute; left:0; color:var(--green); font-weight:700; }
+.price-list li::before{ content:'âœ“'; position:absolute; left:0; color:var(--green); font-weight:700; }
 .fine-print{ font-size:.8rem; color:var(--text-muted); text-align:center; margin-top:14px; }
 .fine-print.center{ text-align:center; }
 
@@ -612,6 +611,97 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   .about-actions .btn{ width:100%; text-align:center; }
 }
 </style>
+<style id="fpp-learning-universe-theme">
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--fpp-bg:#050713;--fpp-panel:#101831;--fpp-cyan:#65e7ff;--fpp-violet:#9b83ff;--fpp-muted:#a1a9c2;--fpp-line:rgba(150,174,255,.22);color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:radial-gradient(ellipse at 55% 0%,#24265b 0,transparent 43%),#050713!important;color:#f4f7ff!important;font-family:Manrope,system-ui,sans-serif!important;overflow-x:hidden}
+body:before{opacity:.22}
+h1,h2,h3,h4{font-family:Manrope,system-ui,sans-serif!important;letter-spacing:-.045em}
+p,li,label,small{color:inherit}
+a{transition:color .2s ease,border-color .2s ease,transform .2s ease}
+a:hover{color:var(--fpp-cyan)}
+button,.btn,input,select,textarea{font-family:Manrope,system-ui,sans-serif}
+button,.btn{transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}button:hover,.btn:hover{transform:translateY(-2px)}
+input,select,textarea{background:#0b1229!important;color:#f4f7ff!important;border:1px solid var(--fpp-line)!important;border-radius:10px!important}
+:focus-visible{outline:2px solid var(--fpp-cyan)!important;outline-offset:3px}
+/* Shared glass / card treatment for existing page components */
+.card,.tool-card,.book-card,.about-card,.pathway-card,.faq-item,.result,.panel,.calculator,.wrap>article,.wrap>section{background:linear-gradient(145deg,rgba(20,29,60,.94),rgba(8,14,32,.96))!important;border-color:var(--fpp-line)!important;color:#f4f7ff}
+.site-header,.nav,.brand{background:rgba(5,7,19,.84)!important;border-color:var(--fpp-line)!important;backdrop-filter:blur(18px)}
+.nav-links a,.brand a{color:#d9e5ff}
+.btn-primary,.primary,.cta{background:linear-gradient(105deg,#5be4f7,#8977ff)!important;color:#080b1c!important;border:0!important;box-shadow:0 10px 38px #5e9dff35}
+.btn-ghost,.btn-outline{border-color:var(--fpp-line)!important;color:#eaf4ff!important;background:#ffffff08!important}
+footer,.footer{background:#070b19!important;border-color:var(--fpp-line)!important;color:#a1a9c2!important}
+@media(max-width:700px){.nav-links,.nav-menu{gap:12px}.container,.wrap{max-width:100%;}}
+</style>
+<style id="fpp-globe-layer">
+.fpp-universe-visual{position:relative;isolation:isolate;min-height:560px;justify-content:center}
+.fpp-globe-wrap{position:absolute;inset:-70px -45px -45px;z-index:-1;display:grid;place-items:center;pointer-events:none;overflow:hidden}
+#fpp-space{position:absolute;inset:0;width:100%;height:100%;z-index:2}
+.fpp-globe-fallback{width:min(330px,65vw);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 25%,#c3faff,#287eb9 18%,#182b66 56%,#050817 80%);box-shadow:0 0 90px #4f9dff65,inset -28px -24px 45px #020512}
+.fpp-universe-visual .pathway-card,.fpp-universe-visual .ticker-wrap{background:rgba(13,22,48,.82);border-color:rgba(126,234,255,.28);backdrop-filter:blur(15px);box-shadow:0 20px 60px #0007}
+.fpp-universe-visual .pathway-node{border-color:#65e7ff;box-shadow:0 0 0 5px #65e7ff20}
+.fpp-universe-visual .pathway::before{background:linear-gradient(90deg,transparent,#65e7ff,transparent)}
+@media(max-width:850px){.fpp-universe-visual{min-height:490px}.fpp-globe-wrap{inset:-35px -20px}}
+</style>
+<style id="fpp-premium-3d">
+/* ===== Glass UI (cyan -> violet hairline, matches the existing theme) ===== */
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(520px 420px at 8% 22%,rgba(101,231,255,.13),transparent 70%),
+             radial-gradient(560px 480px at 94% 48%,rgba(155,131,255,.17),transparent 70%),
+             radial-gradient(520px 460px at 58% 100%,rgba(46,204,113,.07),transparent 70%)}
+.section-alt,.section-dark{background:rgba(9,14,34,.52)}
+.card,.curriculum-item,.price-card,.book-card,.about-card,.lead-gen{
+  background:rgba(14,22,48,.5)!important;
+  backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);
+  border-color:rgba(150,174,255,.1)!important}
+.curriculum-item,.book-card,.lead-gen{position:relative}
+.card::after,.curriculum-item::after,.price-card::after,.book-card::after,.about-card::after,.lead-gen::after{
+  content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,rgba(101,231,255,.8),rgba(155,131,255,.55) 55%,rgba(101,231,255,.15));opacity:.65;transition:opacity .3s;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask-composite:exclude}
+.card:hover::after,.curriculum-item:hover::after,.book-card:hover::after{opacity:1}
+.price-card{box-shadow:0 20px 60px -20px rgba(101,231,255,.28),0 0 90px -30px rgba(155,131,255,.5)}
+.price-card::after{opacity:1}
+
+/* ===== Module icons (3D, drawn from one shared WebGL renderer) ===== */
+.curriculum-item{align-items:center;gap:18px;padding:14px 22px 14px 12px}
+.curriculum-item .ico{display:none;flex:none;width:84px;height:84px;filter:drop-shadow(0 0 14px rgba(101,231,255,.28));opacity:0;transition:opacity .6s}
+.ico-on .curriculum-item .ico{display:block}
+.ico-on .curriculum-item.has3d .ico{opacity:1}
+.curriculum-item .curriculum-num{display:inline-block;width:auto;height:auto;background:none;padding:0;border-radius:0;margin-bottom:2px;font-size:.78rem;letter-spacing:1.5px;color:var(--fpp-cyan)}
+
+/* ===== The FPP Method: candles build while you scroll ===== */
+.fpp-method{position:relative;z-index:1;padding:80px 0}
+.fpp-method .msticky{max-width:var(--container);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:.85fr 1.15fr;gap:20px;align-items:center}
+.fpp-method #fpp-m3d{display:none;width:100%;height:78vh}
+.fpp-method.live{height:340vh;padding:0}
+.fpp-method.live .msticky{position:sticky;top:0;height:100vh}
+.fpp-method.live #fpp-m3d{display:block}
+.msteps{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:6px}
+.msteps li{display:flex;align-items:center;gap:18px;font-weight:800;letter-spacing:-.045em;line-height:1.1;font-size:clamp(2rem,4.6vw,3.7rem);color:#f4f7ff;transition:color .4s,transform .4s}
+.msteps li span{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;border:1px solid currentColor;font-size:.95rem;font-weight:700;letter-spacing:0;transition:.4s}
+.fpp-method.live .msteps li{color:rgba(161,169,194,.28)}
+.fpp-method.live .msteps li.on{color:#fff;transform:translateX(10px)}
+.fpp-method.live .msteps li.on b{background:linear-gradient(100deg,#65e7ff,#9b83ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fpp-method.live .msteps li.on span{background:linear-gradient(135deg,#65e7ff,#9b83ff);border-color:transparent;color:#050713}
+.mbar{display:none;margin-top:30px;height:4px;border-radius:4px;background:rgba(150,174,255,.2);max-width:360px;overflow:hidden}
+.mbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#65e7ff,#9b83ff)}
+.fpp-method.live .mbar{display:block}
+.mnote{display:none;margin:14px 0 0;font-size:.72rem;color:var(--fpp-muted)}
+.fpp-method.live .mnote{display:block}
+@media(max-width:1000px){
+  .fpp-method .msticky{grid-template-columns:1fr}
+  .fpp-method.live .msticky{grid-template-rows:auto 1fr;gap:0;padding-top:78px;align-content:start}
+  .fpp-method #fpp-m3d{order:-1;height:42vh}
+  .fpp-method h2{font-size:1.5rem;margin:6px 0 4px}
+  .msteps{grid-template-columns:1fr 1fr;gap:4px 18px;margin-top:12px}
+  .msteps li{font-size:clamp(1.3rem,5.4vw,1.9rem)}.msteps li span{width:28px;height:28px;font-size:.8rem}
+  .mbar{margin-top:14px}
+}
+@media(max-width:760px){.curriculum-item .ico{width:68px;height:68px}}
+</style>
 </head>
 <body>
 
@@ -661,11 +751,12 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
 
       <p class="hero-flag">
         <span class="dot" aria-hidden="true"></span>
-        FPP Trading Platform — Coming Soon
+        FPP Trading Platform â€” Coming Soon
       </p>
     </div>
 
-    <div class="hero-visual">
+    <div class="hero-visual fpp-universe-visual">
+      <div class="fpp-globe-wrap" aria-hidden="true"><div class="fpp-globe-fallback"></div><canvas id="fpp-space"></canvas></div>
       <div class="pathway-card" aria-hidden="true">
         <p class="pathway-label">The FPP Method</p>
         <ol class="pathway">
@@ -717,6 +808,24 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   </div>
 </section>
 
+<!-- ================= THE FPP METHOD (scroll-built candles) ================= -->
+<section class="fpp-method" id="method" aria-label="The FPP Method">
+  <div class="msticky">
+    <div class="mcopy">
+      <h2>The FPP Method</h2>
+      <ol class="msteps" id="msteps">
+        <li class="on"><span>1</span><b>Learn</b></li>
+        <li><span>2</span><b>Practice</b></li>
+        <li><span>3</span><b>Review</b></li>
+        <li><span>4</span><b>Improve</b></li>
+      </ol>
+      <div class="mbar" aria-hidden="true"><i id="mbar"></i></div>
+      <p class="mnote">Sample prices for illustration only. Not live market data.</p>
+    </div>
+    <canvas id="fpp-m3d" aria-hidden="true"></canvas>
+  </div>
+</section>
+
 <!-- ================= COURSE ================= -->
 <section class="section section-alt" id="course">
   <div class="container">
@@ -728,36 +837,41 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
     <div class="course-layout">
       <div class="curriculum">
         <div class="curriculum-item">
-          <span class="curriculum-num">M1</span>
+          <canvas class="ico" width="240" height="240" data-i="0" aria-hidden="true"></canvas>
           <div>
+            <span class="curriculum-num">M1</span>
             <h3>Foundations of Forex Trading</h3>
             <p>Markets, terminology and how trades actually work.</p>
           </div>
         </div>
         <div class="curriculum-item">
-          <span class="curriculum-num">M2</span>
+          <canvas class="ico" width="240" height="240" data-i="1" aria-hidden="true"></canvas>
           <div>
+            <span class="curriculum-num">M2</span>
             <h3>Technical Analysis</h3>
             <p>Chart structure, price action and reading the market.</p>
           </div>
         </div>
         <div class="curriculum-item">
-          <span class="curriculum-num">M3</span>
+          <canvas class="ico" width="240" height="240" data-i="2" aria-hidden="true"></canvas>
           <div>
+            <span class="curriculum-num">M3</span>
             <h3>Risk Management &amp; Discipline</h3>
             <p>Position sizing, stop-loss placement and capital protection.</p>
           </div>
         </div>
         <div class="curriculum-item">
-          <span class="curriculum-num">M4</span>
+          <canvas class="ico" width="240" height="240" data-i="3" aria-hidden="true"></canvas>
           <div>
+            <span class="curriculum-num">M4</span>
             <h3>Trading Psychology</h3>
             <p>Emotional control, discipline and a consistent mindset.</p>
           </div>
         </div>
         <div class="curriculum-item">
-          <span class="curriculum-num">M5</span>
+          <canvas class="ico" width="240" height="240" data-i="4" aria-hidden="true"></canvas>
           <div>
+            <span class="curriculum-num">M5</span>
             <h3>Live Trading Strategies</h3>
             <p>Real examples and worked setups you can study and apply.</p>
           </div>
@@ -768,7 +882,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
         <span class="price-tag">Most Popular</span>
         <h3>Complete Course</h3>
         <p class="price">$99 <span>one-time</span></p>
-        <p class="price-note">No subscriptions · Lifetime access</p>
+        <p class="price-note">No subscriptions Â· Lifetime access</p>
         <ul class="price-list">
           <li>All 5 core modules, beginner to advanced</li>
           <li>Risk management &amp; position sizing framework</li>
@@ -778,7 +892,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
           <li>30-day money-back guarantee</li>
         </ul>
         <a href="https://tammyverse44.gumroad.com/l/rwnqvy" class="btn btn-primary btn-block">Get Access to the Course</a>
-        <p class="fine-print">Secure checkout via Gumroad · 30-day refund window</p>
+        <p class="fine-print">Secure checkout via Gumroad Â· 30-day refund window</p>
       </aside>
     </div>
 
@@ -799,7 +913,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
         <img class="book-cover" src="IMG_20260225_150456.jpg" alt="Mind Over Market book cover" width="120" height="170" loading="lazy">
         <div class="book-info">
           <h3>Mind Over Market: A Trader's Guide to Emotional Mastery</h3>
-          <p>A practical guide to trading psychology — building discipline, managing emotions and developing a stable trading mindset.</p>
+          <p>A practical guide to trading psychology â€” building discipline, managing emotions and developing a stable trading mindset.</p>
           <a href="https://www.amazon.com/dp/B0H225D6PL" class="btn btn-outline" target="_blank" rel="noopener">View on Amazon</a>
         </div>
       </article>
@@ -820,8 +934,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
 
 <!-- ================= FREE EDUCATION ================= -->
 <section class="section section-alt" id="academy">
-  <div class="container">
-    <div class="section-head">
+  <div class="container">    <div class="section-head">
       <h2>Free Forex Education</h2>
       <p>Learn before you trade.</p>
     </div>
@@ -911,7 +1024,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
 
       <!-- Founder card -->
       <aside class="about-card" data-reveal aria-labelledby="about-meet">
-        <img src="https://i.imgur.com/HlJh3Lm.jpeg" alt="Tammy Kanwar, founder of ForexProfitPathways" class="founder-photo" loading="lazy" width="320" height="320">
+        <img src="founder-tammy.jpg" alt="Tammy Kanwar, founder of ForexProfitPathways" class="founder-photo" loading="lazy" width="320" height="320">
         <h3 id="about-meet" class="about-card-title">Meet the Founder</h3>
         <p class="about-name">Tammy Kanwar</p>
         <p class="founder-role">Founder, ForexProfitPathways</p>
@@ -986,7 +1099,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   <div class="container">
     <div class="lead-gen">
       <div>
-        <h2>Start Your Forex Journey — Free</h2>
+        <h2>Start Your Forex Journey â€” Free</h2>
         <p>Get practical educational resources designed to help beginners understand the foundations of forex, risk management and trading psychology.</p>
       </div>
       <form class="lead-form" id="leadForm" novalidate>
@@ -1010,7 +1123,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
     <div class="accordion" id="faqAccordion">
       <div class="accordion-item">
         <button class="accordion-trigger" aria-expanded="false">Is ForexProfitPathways suitable for beginners?</button>
-        <div class="accordion-panel"><p>Yes. The course starts from the very basics — what forex is and how it works — and builds up progressively. No prior experience is required.</p></div>
+        <div class="accordion-panel"><p>Yes. The course starts from the very basics â€” what forex is and how it works â€” and builds up progressively. No prior experience is required.</p></div>
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger" aria-expanded="false">What does the course cover?</button>
@@ -1034,11 +1147,11 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger" aria-expanded="false">What are the risks of forex trading?</button>
-        <div class="accordion-panel"><p>Forex trading carries a high level of risk and can result in the loss of some or all of your invested capital. It may not be suitable for everyone — only trade with money you can afford to lose.</p></div>
+        <div class="accordion-panel"><p>Forex trading carries a high level of risk and can result in the loss of some or all of your invested capital. It may not be suitable for everyone â€” only trade with money you can afford to lose.</p></div>
       </div>
       <div class="accordion-item">
         <button class="accordion-trigger" aria-expanded="false">Are profits guaranteed?</button>
-        <div class="accordion-panel"><p>No outcome in trading is guaranteed, and no legitimate course or tool can promise profits. FPP teaches a structured, risk-aware approach — the results of applying it are not guaranteed.</p></div>
+        <div class="accordion-panel"><p>No outcome in trading is guaranteed, and no legitimate course or tool can promise profits. FPP teaches a structured, risk-aware approach â€” the results of applying it are not guaranteed.</p></div>
       </div>
     </div>
   </div>
@@ -1098,14 +1211,14 @@ a:focus-visible, button:focus-visible, input:focus-visible{ outline:2px solid va
   </div>
 
   <div class="container footer-bottom">
-    <p>© 2026 ForexProfitPathways. All rights reserved.</p>
+    <p>Â© 2026 ForexProfitPathways. All rights reserved.</p>
     <p class="disclaimer">Educational content only. Trading forex involves substantial risk of loss and is not suitable for every investor. Nothing on this site is financial advice, and no outcome or profit is guaranteed.</p>
   </div>
 </footer>
 
 <script>
 /* =========================================================
-   ForexProfitPathways — site scripts
+   ForexProfitPathways â€” site scripts
    Vanilla JS, no external dependencies.
    ========================================================= */
 
@@ -1133,8 +1246,7 @@ function initNav(){
   // Close menu when a link is tapped (mobile)
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 }
@@ -1149,7 +1261,7 @@ function initHeaderShadow(){
 }
 
 /* ---------------------------------------------------------
-   Decorative currency ticker (static sample data — display only,
+   Decorative currency ticker (static sample data â€” display only,
    not live market data)
    --------------------------------------------------------- */
 function initTicker(){
@@ -1169,7 +1281,7 @@ function initTicker(){
   const renderSet = () => pairs.map(p => `
     <span class="tick">
       <strong>${p.name}</strong> ${p.value}
-      <span class="${p.up ? 'up' : 'down'}">${p.up ? '▲' : '▼'} ${p.change}</span>
+      <span class="${p.up ? 'up' : 'down'}">${p.up ? 'â–²' : 'â–¼'} ${p.change}</span>
     </span>
   `).join('');
 
@@ -1317,6 +1429,131 @@ function handleFormSubmit(e, formId){
     });
   }, { threshold: 0.12 });
   items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+<script type="module">
+const canvas=document.getElementById('fpp-space');
+if(canvas){try{const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,1.6));const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(36,1,.1,100);camera.position.z=5.3;const group=new THREE.Group();scene.add(group);const globe=new THREE.Mesh(new THREE.SphereGeometry(1.32,72,72),new THREE.MeshStandardMaterial({color:0x176c9b,roughness:.75,metalness:.15,emissive:0x082e55,emissiveIntensity:.5}));group.add(globe);group.add(new THREE.Mesh(new THREE.SphereGeometry(1.34,36,24),new THREE.MeshBasicMaterial({color:0x65ddff,wireframe:true,transparent:true,opacity:.12})));group.add(new THREE.Mesh(new THREE.SphereGeometry(1.41,48,48),new THREE.MeshBasicMaterial({color:0x55cfff,transparent:true,opacity:.07,side:THREE.BackSide})));const ring=new THREE.Mesh(new THREE.TorusGeometry(1.82,.006,8,180),new THREE.MeshBasicMaterial({color:0x7b9eff,transparent:true,opacity:.55}));ring.rotation.x=1.12;ring.rotation.y=.28;group.add(ring);const ring2=new THREE.Mesh(new THREE.TorusGeometry(2.02,.004,8,180),new THREE.MeshBasicMaterial({color:0x62eaff,transparent:true,opacity:.3}));ring2.rotation.x=.35;ring2.rotation.y=1.1;group.add(ring2);const sg=new THREE.BufferGeometry(),n=650,pos=new Float32Array(n*3);for(let i=0;i<n;i++){let r=3+Math.random()*6,a=Math.random()*6.283,b=Math.acos(2*Math.random()-1);pos[i*3]=r*Math.sin(b)*Math.cos(a);pos[i*3+1]=r*Math.sin(b)*Math.sin(a);pos[i*3+2]=r*Math.cos(b)}sg.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x9bcfff,size:.012,transparent:true,opacity:.75})));scene.add(new THREE.AmbientLight(0x9fcfff,1.15));let light=new THREE.PointLight(0x72eaff,4,12);light.position.set(3,2,4);scene.add(light);light=new THREE.PointLight(0x7265ff,2,10);light.position.set(-3,-1,-2);scene.add(light);function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}resize();new ResizeObserver(resize).observe(canvas);const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;function animate(){requestAnimationFrame(animate);if(!reduced){group.rotation.y+=.0017;ring.rotation.z+=.0008;ring2.rotation.z-=.0005}renderer.render(scene,camera)}animate()}catch(e){console.warn('3D globe unavailable; fallback planet remains visible.',e)}}
+</script>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+let mx=0,my=0;addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+const GREEN=0x2ECC71,RED=0xE74C3C,CY=0x65e7ff,VI=0x9b83ff,PK=0xd946ef;
+const box=new THREE.BoxGeometry(1,1,1),edgeG=new THREE.EdgesGeometry(box);
+
+/* holographic glass candle */
+function candle(o,c,h,l,w,op){
+  const up=c>=o,col=up?GREEN:RED,g=new THREE.Group();
+  const bh=Math.max(.06,Math.abs(c-o)),mid=(o+c)/2-l,lite=up?0xa6f5c8:0xffb4aa;
+  const bm=new THREE.MeshPhysicalMaterial({color:col,emissive:col,emissiveIntensity:.55,transparent:true,opacity:op,roughness:.1,clearcoat:1});
+  const body=new THREE.Mesh(box,bm);body.scale.set(w,bh,w);body.position.y=mid;g.add(body);
+  const edge=new THREE.LineSegments(edgeG,new THREE.LineBasicMaterial({color:lite}));edge.scale.copy(body.scale);edge.position.copy(body.position);g.add(edge);
+  const wick=new THREE.Mesh(box,new THREE.MeshBasicMaterial({color:lite}));wick.scale.set(.05,h-l,.05);wick.position.y=(h-l)/2;g.add(wick);
+  g.position.y=l;return g;
+}
+function rig(s,k,amb){
+  s.add(new THREE.AmbientLight(0x9fb4ff,amb));
+  const d=new THREE.DirectionalLight(0xffffff,2.2*k);d.position.set(4,6,8);s.add(d);
+  const a=new THREE.PointLight(CY,90*k,40,2);a.position.set(-6,2,5);s.add(a);
+  const b=new THREE.PointLight(VI,110*k,40,2);b.position.set(6,3,3);s.add(b);
+}
+
+/* ---------- THE FPP METHOD: candles build with scroll ---------- */
+(function(){
+  const cv=document.getElementById('fpp-m3d'),sec=document.getElementById('method');if(!cv||!sec)return;
+  let r;try{r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){return}
+  r.setPixelRatio(Math.min(devicePixelRatio,2));
+  sec.classList.add('live');
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(34,1,.1,100);cam.position.set(0,1.5,17);
+  rig(sc,1,1.0);const G=new THREE.Group();sc.add(G);
+  const N=28;let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  let price=0;const cs=[];
+  for(let i=0;i<N;i++){
+    const o=price,c=o+(rnd()-.38)*1.5+.16;price=c;
+    const hi=Math.max(o,c)+rnd()*.5,lo=Math.min(o,c)-rnd()*.5;
+    const cd=candle(o*.7,c*.7,hi*.7,lo*.7,.42,.7);cd.position.x=(i-(N-1)/2)*.62;cd.position.y-=2.5;cd.scale.y=.001;G.add(cd);cs.push(cd);
+  }
+  const grid=new THREE.GridHelper(20,20,CY,0x1e2a55);grid.position.y=-3.2;grid.material.transparent=true;grid.material.opacity=.4;G.add(grid);
+  function sz(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();cam.position.z=w/h<1.2?24:17}
+  addEventListener('resize',sz);new ResizeObserver(sz).observe(cv);sz();
+  const steps=[...document.querySelectorAll('#msteps li')],bar=document.getElementById('mbar');
+  let vis=false,p=0,sp=0,yaw=0;
+  new IntersectionObserver(e=>vis=e[0].isIntersecting,{rootMargin:'100px'}).observe(sec);
+  const prog=()=>{const rc=sec.getBoundingClientRect();p=clamp(-rc.top/(rc.height-innerHeight),0,1)};
+  addEventListener('scroll',prog,{passive:true});prog();
+  (function f(){requestAnimationFrame(f);if(!vis)return;
+    sp+=(p-sp)*(reduce?1:.12);
+    cs.forEach((c,i)=>{const l=clamp((sp*1.08*N-i)/2.4,0,1);c.scale.y=.001+(1-Math.pow(1-l,3))});
+    const idx=Math.min(3,Math.floor(sp*4));steps.forEach((s,i)=>s.classList.toggle('on',i===idx));
+    bar.style.width=(sp*100)+'%';
+    yaw+=((-.35+sp*.5+(reduce?0:mx*.3))-yaw)*.08;G.rotation.y=yaw;G.rotation.x=.12+(reduce?0:my*.15);
+    r.render(sc,cam);})();
+})();
+
+/* ---------- M1-M5 module icons: one shared renderer ---------- */
+(async function(){
+  const cvs=[...document.querySelectorAll('canvas.ico')];if(!cvs.length)return;
+  let IR;try{IR=new THREE.WebGLRenderer({alpha:true,antialias:true})}catch(e){return}
+  IR.setSize(240,240,false);IR.setPixelRatio(1);IR.setClearColor(0x000000,0);
+  document.documentElement.classList.add('ico-on');
+  let env=null;
+  try{const {RoomEnvironment}=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js');
+    env=new THREE.PMREMGenerator(IR).fromScene(new RoomEnvironment(),.04).texture}catch(e){}
+  const tex=c=>{const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t};
+  function mk(){const s=new THREE.Scene(),c=new THREE.PerspectiveCamera(34,1,.1,50);c.position.set(0,0,6.4);rig(s,.45,.5);if(env)s.environment=env;return {s,c}}
+  function sym(t,col){const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+    g.fillStyle='#071433';g.fillRect(0,0,256,256);g.strokeStyle=col;g.lineWidth=12;g.beginPath();g.arc(128,128,106,0,7);g.stroke();
+    g.shadowColor=col;g.shadowBlur=24;g.fillStyle=col;g.font='800 150px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(t,128,140);return tex(c)}
+  function coin(t,col,hex){
+    const side=new THREE.MeshStandardMaterial({color:hex,emissive:hex,emissiveIntensity:.5,metalness:.8,roughness:.3});
+    const face=new THREE.MeshStandardMaterial({map:sym(t,col),emissive:hex,emissiveIntensity:.25,metalness:.4,roughness:.4});
+    const m=new THREE.Mesh(new THREE.CylinderGeometry(1,1,.18,48),[side,face,face]);m.rotation.x=Math.PI/2;
+    const g=new THREE.Group();g.add(m);return g}
+  function lbl(t,col,s){const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
+    g.shadowColor=col;g.shadowBlur=30;g.fillStyle=col;g.font='800 190px sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(t,128,140);
+    return new THREE.Mesh(new THREE.PlaneGeometry(s,s),new THREE.MeshBasicMaterial({map:tex(c),transparent:true,depthWrite:false}))}
+  const B=[
+    /* M1 Foundations: floating neon currency coins */
+    ()=>{const o=new THREE.Group(),a=coin('$','#60a5fa',0x3B82F6),b=coin('â‚¬','#67e8f9',CY);a.position.set(-.55,.15,0);b.position.set(.55,-.15,.3);o.add(a,b);o.scale.setScalar(.95);return o},
+    /* M2 Technical Analysis: holographic candles */
+    ()=>{const o=new THREE.Group();[[0,1,1.3,-.2],[1,.6,1.2,.4],[.6,1.7,2,.5],[1.7,2.4,2.7,1.6]].forEach((d,i)=>{const c=candle(d[0]*.6,d[1]*.6,d[2]*.6,d[3]*.6,.5,.78);c.position.x=(i-1.5)*.85;c.position.y-=.8;o.add(c)});o.position.y=-.3;return o},
+    /* M3 Risk Management: dark-chrome shield, neon green edges */
+    ()=>{const o=new THREE.Group(),sh=new THREE.Shape();
+      sh.moveTo(0,1.3);sh.bezierCurveTo(.5,1.1,.95,1.05,1.1,1.05);sh.lineTo(1.1,.2);sh.bezierCurveTo(1.1,-.6,.5,-1.1,0,-1.4);sh.bezierCurveTo(-.5,-1.1,-1.1,-.6,-1.1,.2);sh.lineTo(-1.1,1.05);sh.bezierCurveTo(-.95,1.05,-.5,1.1,0,1.3);
+      const g=new THREE.ExtrudeGeometry(sh,{depth:.36,bevelEnabled:true,bevelSize:.08,bevelThickness:.08,bevelSegments:3,curveSegments:24});g.center();
+      o.add(new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x2b3647,metalness:.92,roughness:.24,envMapIntensity:1.3})));
+      o.add(new THREE.LineSegments(new THREE.EdgesGeometry(g,28),new THREE.LineBasicMaterial({color:0x34d399})));
+      const p=lbl('%','#34d399',1.5);p.position.z=.36;o.add(p);o.scale.setScalar(.82);return o},
+    /* M4 Trading Psychology: neon wire brain */
+    ()=>{const o=new THREE.Group(),v=new THREE.Vector3();
+      [[-.5,PK],[.5,VI]].forEach(([x,col])=>{
+        const g=new THREE.SphereGeometry(.85,26,18),p=g.attributes.position;
+        for(let i=0;i<p.count;i++){v.fromBufferAttribute(p,i);const n=1+Math.sin(v.x*7+v.y*3)*Math.cos(v.z*7)*.1;v.multiplyScalar(n);p.setXYZ(i,v.x,v.y,v.z)}
+        g.scale(.95,.85,1.2);
+        const m=new THREE.Mesh(g,new THREE.MeshBasicMaterial({color:col,wireframe:true,transparent:true,opacity:.85}));m.position.x=x;o.add(m);
+        const pt=new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:.045}));pt.position.x=x;o.add(pt)});
+      return o},
+    /* M5 Live Strategies: rising line + arrow */
+    ()=>{const o=new THREE.Group();
+      const pts=[[-1.3,-.9],[-.7,-.2],[-.3,-.6],[.4,.3],[.8,-.1],[1.3,.9]].map(a=>new THREE.Vector3(a[0],a[1],0));
+      o.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts,false,'catmullrom',.1),60,.08,10),new THREE.MeshBasicMaterial({color:CY})));
+      const cone=new THREE.Mesh(new THREE.ConeGeometry(.28,.6,20),new THREE.MeshStandardMaterial({color:GREEN,emissive:GREEN,emissiveIntensity:.8}));
+      cone.position.set(1.35,.95,0);cone.rotation.z=-Math.PI/4.6;o.add(cone);
+      const gr=new THREE.GridHelper(3.2,8,CY,0x1e2a55);gr.rotation.x=Math.PI/2;gr.position.z=-.3;gr.material.transparent=true;gr.material.opacity=.5;o.add(gr);return o}
+  ];
+  const items=cvs.map(cv=>{const i=+cv.dataset.i,{s,c}=mk(),o=B[i]();s.add(o);return {cv,ctx:cv.getContext('2d'),s,c,o,i,vis:false,shown:false}});
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{items.find(x=>x.cv===e.target).vis=e.isIntersecting}));
+  items.forEach(it=>vio.observe(it.cv));
+  const t0=performance.now();
+  (function f(){requestAnimationFrame(f);const t=(performance.now()-t0)/1000;
+    items.forEach(it=>{if(!it.vis)return;
+      it.o.rotation.y=reduce?-.4:Math.sin(t*.8+it.i)*.6+mx*.4;
+      it.o.rotation.x=reduce?.1:Math.sin(t*.6+it.i)*.12+my*.2;
+      if(!reduce)it.o.position.y=(it.i===1?-.3:0)+Math.sin(t*1.2+it.i)*.08;
+      IR.render(it.s,it.c);it.ctx.clearRect(0,0,240,240);it.ctx.drawImage(IR.domElement,0,0);
+      if(!it.shown){it.shown=true;it.cv.closest('.curriculum-item').classList.add('has3d')}})})();
 })();
 </script>
 </body>
