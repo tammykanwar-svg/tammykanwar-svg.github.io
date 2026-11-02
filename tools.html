@@ -1,119 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6J5XMQ9092"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6J5XMQ9092');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Forex Tools | ForexProfitPathways</title>
-<meta name="description" content="Free forex tools: lot size, risk/reward and pip value calculators, a risk simulator, a trade journal and more.">
+<title>Free Forex Tools | Lot Size &amp; Risk Calculators | ForexProfitPathways</title>
+<meta name="description" content="Free forex calculators from ForexProfitPathways: lot size calculator, pip value, risk/reward and drawdown recovery. Educational tools for better risk management.">
+<meta name="author" content="Tammy Kanwar">
+<link rel="canonical" href="https://forexprofitpathways.com/tools.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ForexProfitPathways">
+<meta property="og:title" content="Free Forex Tools | ForexProfitPathways">
+<meta property="og:description" content="Lot size, pip value, risk/reward and drawdown recovery calculators for risk-aware trading education.">
+<meta property="og:image" content="https://i.imgur.com/HlJh3Lm.jpeg">
+<meta property="og:url" content="https://forexprofitpathways.com/tools.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Forex Tools | ForexProfitPathways">
+<meta name="twitter:description" content="Lot size, pip value, risk/reward and drawdown recovery calculators.">
+<meta name="twitter:image" content="https://i.imgur.com/HlJh3Lm.jpeg">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/bRTsK9R.jpeg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ForexProfitPathways Free Forex Calculators",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "description": "Free educational forex calculators: lot size, pip value, risk/reward and drawdown recovery.",
+  "url": "https://forexprofitpathways.com/tools.html",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Tammy Kanwar", "url": "https://forexprofitpathways.com/" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--paper:#F1F5F4;--card:#FFFFFF;--ink:#0F2A33;--muted:#55707A;--line:#D3DEDC;--teal:#1B6B75;--teal-soft:#DCEEEF;--loss:#B5452F;--loss-soft:#F6E1DB;--gain:#1F7A52;--gain-soft:#DDF0E6;--focus:#1B6B75;--onteal:#FFFFFF;color-scheme:light;}
-@media (prefers-color-scheme: dark){:root{--paper:#0E1B20;--card:#162A31;--ink:#E8F0EF;--muted:#94ADB4;--line:#284049;--teal:#5FC0CB;--teal-soft:#1B3B42;--loss:#F08A72;--loss-soft:#3D2620;--gain:#6BD3A0;--gain-soft:#17372A;--focus:#5FC0CB;--onteal:#07151A;color-scheme:dark;}}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
-.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
-.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;gap:12px}
-.brand a{color:var(--ink);text-decoration:none;font-weight:700}
-.brand a.alltools{color:var(--teal);font-weight:600;font-size:.92rem}
-h1{font-family:"Iowan Old Style",Palatino,"Palatino Linotype",Georgia,serif;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.1;margin:0 0 8px;font-weight:700}
-h2{font-family:"Iowan Old Style",Palatino,Georgia,serif;margin:0 0 8px}
-.lede{color:var(--muted);max-width:58ch;margin:0 0 28px}
-.grid{display:grid;gap:20px;grid-template-columns:1fr}
-@media(min-width:820px){.grid{grid-template-columns:1fr 1.1fr;align-items:start}}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
-.stack{margin-top:20px}
-.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
-label{display:block;font-size:.9rem;font-weight:600;margin-bottom:6px}
-.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
-input,select{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 12px;min-height:44px}
-input[type=range]{padding:0;accent-color:var(--teal)}
-input[type=checkbox]{width:22px;height:22px;min-height:0;flex:none;margin:2px 0 0;accent-color:var(--teal)}
-input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:1px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.seg button{font:inherit;font-weight:600;min-height:44px;border:0;cursor:pointer;background:var(--paper);color:var(--muted)}
-.seg button[aria-pressed="true"]{background:var(--teal);color:var(--onteal)}
-.result-head{margin-bottom:4px;color:var(--muted);font-size:.9rem}
-.big{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:clamp(2.6rem,9vw,4rem);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.big small{font-size:1.1rem;font-weight:400;color:var(--muted);margin-left:6px;font-family:system-ui,sans-serif}
-dl{margin:14px 0 0}
-.stat{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
-.stat:last-child{border-bottom:0}
-.stat dt{color:var(--muted);font-size:.9rem}
-.stat dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums;text-align:right}
-.loss{color:var(--loss)}.gain{color:var(--gain)}
-.notice{margin-top:16px;padding:10px 12px;border-radius:8px;font-size:.88rem;background:var(--teal-soft)}
-.notice.warn{background:var(--loss-soft)}
-.notice[hidden]{display:none}
-svg.viz{width:100%;display:block;margin-top:14px}
-svg text{font-size:11px;fill:var(--ink);font-variant-numeric:tabular-nums}
-svg text.lbl{fill:var(--muted)}
-.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.92rem}
-.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right}
-.tbl th:first-child,.tbl td:first-child{text-align:left}
-.tbl th{color:var(--muted);font-weight:600}
-.tbl tr.hl td{background:var(--teal-soft);font-weight:700}
-.tblwrap{overflow-x:auto}
-.act{font:inherit;font-weight:700;min-height:44px;padding:0 18px;border-radius:10px;border:2px solid var(--teal);background:transparent;color:var(--teal);cursor:pointer}
-.act.solid{background:var(--teal);color:var(--onteal)}
-.act.danger{border-color:var(--loss);color:var(--loss)}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.chk label{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;cursor:pointer;font-weight:500;font-size:.96rem}
-.chk label.on{background:var(--gain-soft);border-color:var(--gain)}
-.progress{height:10px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 4px}
-.progress>div{height:100%;background:var(--teal);width:0;transition:width .2s}
-.opts button{display:block;width:100%;text-align:left;font:inherit;padding:14px;margin-bottom:10px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);cursor:pointer;min-height:48px}
-.opts button:hover{border-color:var(--teal)}
-.bars .bar{margin:10px 0}
-.bars .bar span{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
-.bars .bar i{display:block;height:8px;border-radius:99px;background:var(--teal)}
-.bars .bar b{display:block;height:8px;border-radius:99px;background:var(--line)}
-ul.tips{padding-left:20px;margin:8px 0 0}
-ul.tips li{margin-bottom:6px}
-.hub{display:grid;gap:14px;grid-template-columns:1fr}
-@media(min-width:640px){.hub{grid-template-columns:1fr 1fr}}
-@media(min-width:900px){.hub{grid-template-columns:1fr 1fr 1fr}}
-.tool{display:block;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
-.tool:hover{border-color:var(--teal)}
-.tool h3{margin:0 0 4px;font-size:1.05rem}
-.tool p{margin:0;color:var(--muted);font-size:.9rem}
-.tool span{display:inline-block;margin-top:10px;color:var(--teal);font-weight:700;font-size:.9rem}
-.next{margin-top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
-.next h2{font-size:1.4rem;margin:0 0 4px}
-.next p{margin:0 0 16px;color:var(--muted);max-width:56ch}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:10px;font-weight:700;text-decoration:none;font-size:1rem;flex:1 1 220px}
-.btn.primary{background:var(--teal);color:var(--onteal)}
-.btn.secondary{border:2px solid var(--teal);color:var(--teal)}
-.foot{margin-top:28px;font-size:.82rem;color:var(--muted);max-width:70ch}
-.foot h3{font-size:1rem;color:var(--ink);margin:0 0 6px}
-.foot p{margin:0 0 10px}
+:root{
+  --bg:#050713; --dark2:#0b1229; --dark3:#111a36; --card:#101831;
+  --text:#f4f7ff; --muted:#a1a9c2; --cyan:#65e7ff; --violet:#9b83ff;
+  --green:#2ECC71; --red:#E74C3C; --amber:#f5b942;
+  --line:rgba(150,174,255,.22); --border:rgba(255,255,255,.06);
+  --grad:linear-gradient(105deg,#5be4f7,#8977ff);
+  --container:1180px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+body{margin:0;background:radial-gradient(ellipse at 55% 0%,#24265b 0,transparent 43%),var(--bg);color:var(--text);font-family:'Manrope',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(520px 420px at 8% 22%,rgba(101,231,255,.13),transparent 70%),
+             radial-gradient(560px 480px at 94% 48%,rgba(155,131,255,.17),transparent 70%),
+             radial-gradient(520px 460px at 58% 100%,rgba(46,204,113,.07),transparent 70%)}
+h1,h2,h3,h4{font-weight:800;line-height:1.15;letter-spacing:-.045em;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,5vw,4rem)}
+h2{font-size:clamp(1.8rem,3.2vw,2.6rem)}
+h3{font-size:1.15rem;letter-spacing:-.02em}
+p{margin:0 0 1em;color:var(--muted)}
+a{color:inherit;text-decoration:none;transition:color .2s}
+a:hover{color:var(--cyan)}
+ul,ol{list-style:none;padding:0;margin:0}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--cyan);color:#000;padding:10px 16px;z-index:300;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin:0 0 .9em}
+.gt{background:linear-gradient(100deg,#65e7ff,#9b83ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 30px;border-radius:10px;font-family:inherit;font-weight:700;font-size:.98rem;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .25s,border-color .25s,background .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--grad);color:#080b1c;box-shadow:0 10px 38px #5e9dff35}
+.btn-primary:hover{color:#080b1c;box-shadow:0 12px 42px #5e9dff60}
+.btn-ghost{color:#eaf4ff;border-color:var(--line);background:#ffffff08}
+.btn-ghost:hover{border-color:var(--cyan);color:#eaf4ff}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(5,7,19,.84);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{max-width:var(--container);margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.brand-mark{font-weight:800;font-size:.85rem;background:rgba(101,231,255,.1);color:var(--cyan);padding:6px 10px;border-radius:6px;letter-spacing:.05em;border:1px solid var(--line)}
+.brand-name{font-weight:800;font-size:1.15rem;color:var(--cyan);letter-spacing:-.02em}
+.nav-menu{display:flex;align-items:center;gap:30px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:.85rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#d9e5ff}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:var(--cyan)}
+.nav-cta{padding:10px 24px;font-size:.9rem}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.nav-toggle span{width:22px;height:2px;background:var(--cyan);display:block}
+
+/* glass */
+.glass{position:relative;background:rgba(14,22,48,.5);backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);border:1px solid rgba(150,174,255,.1);border-radius:20px}
+.glass::after{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;opacity:.7;
+  background:linear-gradient(135deg,rgba(101,231,255,.8),rgba(155,131,255,.55) 55%,rgba(101,231,255,.15));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask-composite:exclude}
+
+/* hero */
+.crumbs{font-size:.85rem;color:var(--muted);margin-bottom:22px}
+.crumbs a{color:var(--cyan)}.crumbs a:hover{text-decoration:underline}
+.hero{padding:70px 0 40px;position:relative}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+.hero-sub{font-size:1.1rem;max-width:48ch;line-height:1.7}
+.hero-flag{display:inline-flex;align-items:center;gap:8px;background:rgba(101,231,255,.08);border:1px solid var(--line);padding:6px 16px;border-radius:100px;font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
+.hero-flag i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.t3d-wrap{position:relative;height:380px}
+.t3d-wrap::before{content:"";position:absolute;left:50%;top:50%;width:260px;height:260px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 30% 25%,#c3faff,#287eb9 18%,#182b66 56%,#050817 80%);box-shadow:0 0 90px #4f9dff55;opacity:.55}
+#tools3d{position:absolute;inset:0;width:100%;height:100%}
+
+/* tabs */
+.tools{padding:40px 0 90px}
+.tabs{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 14px;margin-bottom:10px;scrollbar-width:thin}
+.tab{flex:none;font-family:inherit;font-weight:700;font-size:.95rem;color:#d9e5ff;background:rgba(14,22,48,.5);border:1px solid var(--line);padding:12px 22px;border-radius:100px;cursor:pointer;transition:.25s}
+.tab:hover{border-color:var(--cyan)}
+.tab[aria-selected="true"]{background:var(--grad);color:#080b1c;border-color:transparent;box-shadow:0 8px 28px #5e9dff30}
+.panel[hidden]{display:none}
+.tool-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start}
+.form-card,.result-card{padding:34px 30px}
+.result-card{position:sticky;top:96px}
+.form-card h2,.result-card h2{font-size:1.4rem;margin-bottom:.3em}
+.form-card>p{font-size:.93rem}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field[hidden]{display:none}
+.field label{font-size:.82rem;font-weight:700;color:#d9e5ff}
+.field small{font-size:.75rem;color:var(--muted);line-height:1.4}
+.field input,.field select{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:#0b1229;color:var(--text);font-family:inherit;font-size:1rem;font-weight:600;font-variant-numeric:tabular-nums}
+.field input:focus,.field select:focus{border-color:var(--cyan);outline:none;box-shadow:0 0 0 3px rgba(101,231,255,.18)}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#65e7ff 50%),linear-gradient(135deg,#65e7ff 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:38px}
+
+/* results */
+.big{font-size:clamp(2.6rem,5vw,4rem);font-weight:800;letter-spacing:-.05em;line-height:1;margin:6px 0 4px;font-variant-numeric:tabular-nums}
+.big small{font-size:1rem;font-weight:600;letter-spacing:0;color:var(--muted);-webkit-text-fill-color:var(--muted)}
+.rows{margin-top:18px}
+.row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--border);font-size:.95rem}
+.row:last-child{border-bottom:0}
+.row span{color:var(--muted)}
+.row b{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.meter{height:8px;border-radius:8px;background:rgba(150,174,255,.15);overflow:hidden;margin:16px 0 6px}
+.meter i{display:block;height:100%;width:0;border-radius:8px;background:var(--green);transition:width .4s,background .4s}
+.meter-l{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+.msg{margin-top:16px;font-size:.88rem;padding:12px 14px;border-radius:12px;background:rgba(101,231,255,.07);border:1px solid var(--line);color:#d9e5ff;min-height:0}
+.msg:empty{display:none}
+.msg.warn{background:rgba(245,185,66,.09);border-color:rgba(245,185,66,.4)}
+.msg.bad{background:rgba(231,76,60,.1);border-color:rgba(231,76,60,.45)}
+.formula{margin-top:20px;font-size:.82rem;color:var(--muted);padding-top:16px;border-top:1px solid var(--border)}
+.formula code{display:block;margin-top:6px;color:var(--cyan);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;line-height:1.6}
+.pos{color:var(--green)}.neg{color:var(--red)}
+
+/* drawdown bars */
+.ddtable{display:grid;gap:10px;margin-top:18px}
+.ddrow{display:grid;grid-template-columns:62px 1fr 74px;gap:12px;align-items:center;font-size:.85rem;font-variant-numeric:tabular-nums}
+.ddrow .bar{height:8px;border-radius:8px;background:rgba(150,174,255,.15);overflow:hidden}
+.ddrow .bar i{display:block;height:100%;background:linear-gradient(90deg,#65e7ff,#9b83ff);border-radius:8px}
+.ddrow b{text-align:right}
+
+/* info + cta */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:50px}
+.notes .glass{padding:26px}
+.notes p{font-size:.93rem;margin:0}
+.disc{margin-top:34px;text-align:center;font-size:.85rem;color:var(--muted);max-width:760px;margin-inline:auto}
+.disc a{color:var(--cyan);text-decoration:underline}
+.cta{padding:0 0 90px}
+.cta-box{padding:52px 40px;text-align:center}
+.cta-box p{max-width:560px;margin:0 auto 24px}
+.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+.site-footer{background:#070b19;border-top:1px solid var(--line);padding:60px 0 30px;position:relative;z-index:1}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.footer-brand .tagline{font-size:.88rem;margin-top:8px}
+.footer-col h4{font-size:.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px}
+.footer-col ul{display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:.9rem;color:var(--muted)}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{margin-top:44px;padding-top:26px;border-top:1px solid var(--border);font-size:.8rem;color:var(--muted)}
+.footer-bottom p{font-size:.8rem}
+
+@media(max-width:1000px){
+  .hero-inner,.tool-grid{grid-template-columns:1fr}
+  .t3d-wrap{height:300px;order:-1}
+  .result-card{position:static}
+  .notes{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .nav-toggle{display:flex}
+  .nav-menu{position:fixed;top:66px;left:0;right:0;height:calc(100vh - 66px);height:calc(100dvh - 66px);background:var(--bg);border-top:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:28px 24px;gap:24px;transform:translateX(100%);transition:transform .25s;overflow-y:auto}
+  .nav-menu.open{transform:none}
+  .nav-links{flex-direction:column;gap:18px;width:100%}
+  .nav-links a{font-size:1.05rem}
+  .nav-cta{width:100%;text-align:center}
+  .fields{grid-template-columns:1fr}
+  .form-card,.result-card{padding:26px 20px}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-box{padding:36px 22px}
+  .hero{padding-top:44px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">
-    <a href="https://forexprofitpathways.com/">ForexProfitPathways</a>
-    <a class="alltools" href="tools.html">All free tools</a>
-  </div>
-  <h1>Free forex trading tools</h1>
-  <p class="lede">Simple, free tools built around risk management and discipline. No signup needed.</p>
-  <div class="hub"><a class="tool" href="lot-size-calculator.html"><h3>Lot size calculator</h3><p>Get the right position size from your account, risk % and stop loss.</p><span>Open tool</span></a><a class="tool" href="risk-reward-calculator.html"><h3>Risk/reward calculator</h3><p>Check ratio, breakeven win rate and expectancy before you enter.</p><span>Open tool</span></a><a class="tool" href="pip-value-calculator.html"><h3>Pip value calculator</h3><p>See what each pip is worth in USD for any pair and lot size.</p><span>Open tool</span></a><a class="tool" href="drawdown-recovery-calculator.html"><h3>Drawdown recovery calculator</h3><p>How much profit you need to recover after a loss.</p><span>Open tool</span></a><a class="tool" href="risk-simulator.html"><h3>Risk & compounding simulator</h3><p>Simulate 500 possible futures for your account.</p><span>Open tool</span></a><a class="tool" href="pre-trade-checklist.html"><h3>Pre-trade checklist</h3><p>10 checks to run before every trade.</p><span>Open tool</span></a><a class="tool" href="trading-psychology-quiz.html"><h3>Trading psychology quiz</h3><p>Find the emotional pattern that costs you the most.</p><span>Open tool</span></a><a class="tool" href="trade-journal.html"><h3>Trade journal</h3><p>Log trades and track win rate, R, drawdown and emotions.</p><span>Open tool</span></a></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-  <section class="next" aria-label="Keep learning">
-    <h2>Know your numbers. Now build your process.</h2>
-    <p>Get the free beginner guide, or go through the full risk management and psychology course.</p>
-    <div class="btns">
-      <a class="btn primary" href="https://forexprofitpathways.com/#free-guide">Get the free guide</a>
-      <a class="btn secondary" href="https://tammyverse44.gumroad.com/l/rwnqvy" target="_blank" rel="noopener">See the full course</a>
+<header class="site-header" id="site-header">
+  <nav class="nav" aria-label="Primary">
+    <a href="/" class="nav-brand"><span class="brand-mark" aria-hidden="true">FPP</span><span class="brand-name">ForexProfitPathways</span></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-links">
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#learn">Learn</a></li>
+        <li><a href="/#course">Course</a></li>
+        <li><a href="/#books">Books</a></li>
+        <li><a href="/tools.html" aria-current="page">Free Tools</a></li>
+        <li><a href="/#platform">FPP Platform</a></li>
+        <li><a href="/#founder">About</a></li>
+      </ul>
+      <a href="https://tammyverse44.gumroad.com/l/rwnqvy" class="btn btn-primary nav-cta">Get the Course</a>
     </div>
-  </section>
+  </nav>
+</header>
 
-  <div class="foot">
-    <h3>Why these tools?</h3><p>They focus on the parts of trading you control: risk, size and your own behavior.</p>
-    <p>Educational tool only. Trading forex involves substantial risk and no outcome is guaranteed. This is not financial advice.</p>
+<main id="main">
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <p class="crumbs"><a href="/">Home</a> / Free Tools</p>
+      <p class="hero-flag"><i aria-hidden="true"></i>Free &amp; educational</p>
+      <h1>Free Forex <span class="gt">Tools</span></h1>
+      <p class="hero-sub">Simple calculators to help you think about risk, position size and recovery before you ever place a trade.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px">
+        <a href="#tools" class="btn btn-primary">Open the Calculators</a>
+        <a href="/#free-guide" class="btn btn-ghost">Get the Free Guide</a>
+      </div>
+    </div>
+    <div class="t3d-wrap" aria-hidden="true"><canvas id="tools3d"></canvas></div>
   </div>
-</div>
+</section>
 
+<section class="tools" id="tools">
+  <div class="container">
+
+    <div class="tabs" role="tablist" aria-label="Forex calculators">
+      <button class="tab" role="tab" id="tab-lot" aria-controls="panel-lot" aria-selected="true" data-key="lot">Lot Size Calculator</button>
+      <button class="tab" role="tab" id="tab-pip" aria-controls="panel-pip" aria-selected="false" tabindex="-1" data-key="pip">Pip Value</button>
+      <button class="tab" role="tab" id="tab-rr" aria-controls="panel-rr" aria-selected="false" tabindex="-1" data-key="rr">Risk / Reward</button>
+      <button class="tab" role="tab" id="tab-dd" aria-controls="panel-dd" aria-selected="false" tabindex="-1" data-key="dd">Drawdown Recovery</button>
+    </div>
+
+    <!-- ===== LOT SIZE ===== -->
+    <div class="panel" id="panel-lot" role="tabpanel" aria-labelledby="tab-lot">
+      <div class="tool-grid">
+        <div class="glass form-card">
+          <h2>Lot Size Calculator</h2>
+          <p>Work out a position size from how much of your account you are willing to risk on one trade.</p>
+          <div class="fields">
+            <div class="field"><label for="lot-bal">Account balance</label><input id="lot-bal" type="number" inputmode="decimal" min="0" step="any" value="1000"></div>
+            <div class="field"><label for="lot-risk">Risk per trade (%)</label><input id="lot-risk" type="number" inputmode="decimal" min="0" max="100" step="any" value="1"></div>
+            <div class="field full"><label for="lot-pair">Currency pair</label>
+              <select id="lot-pair">
+                <option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="AUDUSD">AUD/USD</option><option value="NZDUSD">NZD/USD</option>
+                <option value="USDJPY">USD/JPY</option><option value="USDCHF">USD/CHF</option><option value="USDCAD">USD/CAD</option>
+                <option value="CUSTOM">Other (enter pip value)</option>
+              </select>
+              <small id="lot-pairnote">Pip values for these pairs assume a USD account.</small>
+            </div>
+            <div class="field full" id="lot-pricef" hidden><label for="lot-price">Current price of the pair</label><input id="lot-price" type="number" inputmode="decimal" min="0" step="any" placeholder="Enter the price from your platform"><small>Needed to convert the pip value into USD.</small></div>
+            <div class="field full" id="lot-customf" hidden><label for="lot-custom">Pip value per 1.00 lot</label><input id="lot-custom" type="number" inputmode="decimal" min="0" step="any" placeholder="In your account currency"><small>Check this in your broker's platform or contract specifications.</small></div>
+            <div class="field"><label for="lot-sl">Stop loss (pips)</label><input id="lot-sl" type="number" inputmode="decimal" min="0" step="any" value="20"></div>
+            <div class="field"><label for="lot-tp">Take profit (pips) <span style="font-weight:500;color:var(--muted)">optional</span></label><input id="lot-tp" type="number" inputmode="decimal" min="0" step="any" placeholder="e.g. 40"></div>
+          </div>
+        </div>
+        <div class="glass result-card" aria-live="polite">
+          <p class="eyebrow">Result</p>
+          <div class="big gt" id="lot-out">&#8212;</div>
+          <span style="color:var(--muted);font-size:.9rem">standard lots (rounded down to 0.01)</span>
+          <div class="meter" aria-hidden="true"><i id="lot-meter"></i></div>
+          <div class="meter-l" aria-hidden="true"><span>Lower risk</span><span>Higher risk</span></div>
+          <div class="rows">
+            <div class="row"><span>Amount at risk</span><b id="lot-risk$">&#8212;</b></div>
+            <div class="row"><span>Pip value (1.00 lot)</span><b id="lot-pv">&#8212;</b></div>
+            <div class="row"><span>Position size</span><b id="lot-units">&#8212;</b></div>
+            <div class="row"><span>Mini / micro lots</span><b id="lot-mm">&#8212;</b></div>
+            <div class="row"><span>Max loss at this size</span><b id="lot-loss">&#8212;</b></div>
+            <div class="row"><span>Potential reward</span><b id="lot-reward">&#8212;</b></div>
+            <div class="row"><span>Reward : Risk</span><b id="lot-rr">&#8212;</b></div>
+          </div>
+          <div class="msg" id="lot-msg"></div>
+          <div class="formula">Formula<code>Lot size = (Balance &#215; Risk %) &#247; (Stop loss pips &#215; Pip value per lot)</code></div>
+        </div>
+      </div>
+    </div>
+        </div>
+        <div class="glass result-card" aria-live="polite">
+          <p class="eyebrow">Result</p>
+          <div class="big gt" id="pip-out">&#8212;</div>
+          <span style="color:var(--muted);font-size:.9rem">per pip, for your trade size (USD)</span>
+          <div class="rows">
+            <div class="row"><span>Standard lot (1.00)</span><b id="pip-std">&#8212;</b></div>
+            <div class="row"><span>Mini lot (0.10)</span><b id="pip-mini">&#8212;</b></div>
+            <div class="row"><span>Micro lot (0.01)</span><b id="pip-micro">&#8212;</b></div>
+          </div>
+          <div class="msg" id="pip-msg"></div>
+          <div class="formula">Formula<code>Pip value = Pip size &#215; Units &#247; Price (when USD is the base currency)</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RISK / REWARD ===== -->
+    <div class="panel" id="panel-rr" role="tabpanel" aria-labelledby="tab-rr" hidden>
+      <div class="tool-grid">
+        <div class="glass form-card">
+          <h2>Risk / Reward &amp; Break-even Win Rate</h2>
+          <p>Understand how your reward-to-risk ratio relates to the win rate you need just to break even.</p>
+          <div class="fields">
+            <div class="field"><label for="rr-ratio">Reward-to-risk ratio</label><input id="rr-ratio" type="number" inputmode="decimal" min="0" step="any" value="2"><small>2 means you aim to make 2 for every 1 you risk.</small></div>
+            <div class="field"><label for="rr-win">Your win rate (%)</label><input id="rr-win" type="number" inputmode="decimal" min="0" max="100" step="any" value="40"><small>Use your own tested figure, not a guess.</small></div>
+          </div>
+        </div>
+        <div class="glass result-card" aria-live="polite">
+          <p class="eyebrow">Result</p>
+          <div class="big gt" id="rr-be">&#8212;</div>
+          <span style="color:var(--muted);font-size:.9rem">break-even win rate (before costs)</span>
+          <div class="rows">
+            <div class="row"><span>Expectancy per trade</span><b id="rr-exp">&#8212;</b></div>
+            <div class="row"><span>Win rate you entered</span><b id="rr-w">&#8212;</b></div>
+          </div>
+          <div class="msg" id="rr-msg"></div>
+          <div class="formula">Formulas<code>Break-even win rate = 1 &#247; (1 + R:R)
+Expectancy (in R) = Win% &#215; R:R &#8722; Loss%</code></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DRAWDOWN ===== -->
+    <div class="panel" id="panel-dd" role="tabpanel" aria-labelledby="tab-dd" hidden>
+      <div class="tool-grid">
+        <div class="glass form-card">
+          <h2>Drawdown Recovery</h2>
+          <p>Losses are not symmetrical. See how much you need to gain back after a drawdown.</p>
+          <div class="fields">
+            <div class="field full"><label for="dd-pct">Drawdown (%)</label><input id="dd-pct" type="number" inputmode="decimal" min="0" max="99.9" step="any" value="20"></div>
+          </div>
+          <div class="ddtable" aria-label="Recovery examples" id="dd-table"></div>
+        </div>
+        <div class="glass result-card" aria-live="polite">
+          <p class="eyebrow">Result</p>
+          <div class="big gt" id="dd-out">&#8212;</div>
+          <span style="color:var(--muted);font-size:.9rem">gain needed to get back to break-even</span>
+          <div class="msg" id="dd-msg"></div>
+          <div class="formula">Formula<code>Gain needed = Drawdown &#247; (100 &#8722; Drawdown) &#215; 100</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="glass"><h3>Risk first</h3><p>Position sizing starts from how much you can afford to lose on a trade, not from how much you hope to win.</p></div>
+      <div class="glass"><h3>Check with your broker</h3><p>Contract size, pip definitions, spreads and account currency differ between brokers. Always confirm the numbers in your own platform.</p></div>
+      <div class="glass"><h3>Practice before you risk</h3><p>Use these tools while studying and practising, so risk management becomes a habit before real money is involved.</p></div>
+    </div>
+
+    <p class="disc">These calculators are for educational purposes only and give estimates, not financial advice. Trading involves substantial risk and no outcome is guaranteed. <a href="/disclaimer.html">Read the full Risk Disclosure</a>.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <div class="glass cta-box">
+      <h2>Build Your Trading Path With FPP</h2>
+      <p>Learn. Practice. Review. Improve.</p>
+      <div class="cta-actions">
+        <a href="https://tammyverse44.gumroad.com/l/rwnqvy" class="btn btn-primary">Explore the Course</a>
+        <a href="/#free-guide" class="btn btn-ghost">Get the Free Guide</a>
+        <a href="/" class="btn btn-ghost">Back to Home</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      pan class="brand-mark" aria-hidden="true">FPP</span>
+      <p class="brand-name">ForexProfitPathways</p>
+      <p class="tagline">Learn. Practice. Review. Improve.</p>
+    </div>
+    <div class="footer-col"><h4>Site</h4><ul>
+      <li><a href="/#home">Home</a></li><li><a href="/#learn">Learn</a></li><li><a href="/#course">Course</a></li>
+      <li><a href="/#books">Books</a></li><li><a href="/#platform">FPP Platform</a></li><li><a href="/#founder">About</a></li></ul></div>
+    <div class="footer-col"><h4>Legal</h4><ul>
+      <li><a href="/contact.html">Contact</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/disclaimer.html">Risk Disclosure</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul>
+      <li><a href="https://www.instagram.com/forexprofitpathways" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/tammy-kanwar-b4538a339" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="container footer-bottom">
+    <p>&#169; 2026 ForexProfitPathways. All rights reserved.</p>
+    <p>Educational content only. Trading forex involves substantial risk of loss and is not suitable for every investor. Nothing on this site is financial advice, and no outcome or profit is guaranteed.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- nav ---------- */
+(function(){
+  var t=document.getElementById('navToggle'),m=document.getElementById('navMenu');
+  t.addEventListener('click',function(){var o=m.classList.toggle('open');t.setAttribute('aria-expanded',String(o))});
+  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.remove('open');t.setAttribute('aria-expanded','false')})});
+})();
+
+/* ---------- tabs (with #hash support: #lot #pip #rr #dd) ---------- */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(key,focus){
+    tabs.forEach(function(t){
+      var on=t.dataset.key===key;
+      t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+      if(on&&focus)t.focus();
+    });
+    try{history.replaceState(null,'','#'+key)}catch(e){}
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t.dataset.key)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      if(n!==null){e.preventDefault();show(tabs[n].dataset.key,true)}
+    });
+  });
+  var h=location.hash.replace('#','');
+  if(tabs.some(function(t){return t.dataset.key===h}))show(h);
+})();
+
+/* ---------- calculators ---------- */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var num=function(id){var v=parseFloat($(id).value);return isFinite(v)?v:NaN};
+  var money=function(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})};
+  var NEEDS_PRICE={USDJPY:1,USDCHF:1,USDCAD:1};
+
+  /* pip value (USD) for 1.00 standard lot = 100,000 units */
+  function pipPerLot(pair,price,custom){
+    if(pair==='CUSTOM')return custom>0?custom:NaN;
+    if(pair==='USDJPY')return price>0?(0.01*100000)/price:NaN;
+    if(pair==='USDCHF'||pair==='USDCAD')return price>0?(0.0001*100000)/price:NaN;
+    return 10; /* EUR/USD, GBP/USD, AUD/USD, NZD/USD */
+  }
+  function setMsg(id,text,cls){var e=$(id);e.textContent=text||'';e.className='msg'+(cls?' '+cls:'')}
+
+  /* ----- Lot size ----- */
+  function lot(){
+    var pair=$('lot-pair').value;
+    $('lot-pricef').hidden=!NEEDS_PRICE[pair];
+    $('lot-customf').hidden=pair!=='CUSTOM';
+    $('lot-pairnote').style.display=pair==='CUSTOM'?'none':'';
+    var bal=num('lot-bal'),rk=num('lot-risk'),sl=num('lot-sl'),tp=num('lot-tp');
+    var pv=pipPerLot(pair,num('lot-price'),num('lot-custom'));
+    var ids=['lot-out','lot-risk$','lot-pv','lot-units','lot-mm','lot-loss','lot-reward','lot-rr'];
+    function blank(){ids.forEach(function(i){$(i).textContent='\u2014'});$('lot-meter').style.width='0'}
+    if(!(bal>0)||!(rk>0)||!(sl>0)){blank();setMsg('lot-msg','Enter your balance, risk % and stop loss (in pips) to see a result.');return}
+    if(rk>100){blank();setMsg('lot-msg','Risk per trade cannot be more than 100%.','bad');return}
+    if(!(pv>0)){blank();$('lot-risk$').textContent=money(bal*rk/100);setMsg('lot-msg',pair==='CUSTOM'?'Enter the pip value per 1.00 lot to continue.':'Enter the current price of the pair to calculate the pip value.');return}
+    var risk=bal*rk/100,exact=risk/(sl*pv),lots=Math.floor(exact*100)/100;
+    $('lot-out').textContent=lots.toFixed(2);
+    $('lot-risk$').textContent=money(risk)+(pair==='CUSTOM'?'':'');
+    $('lot-pv').textContent=money(pv);
+    $('lot-units').textContent=Math.round(lots*100000).toLocaleString('en-US')+' units';
+    $('lot-mm').textContent=(lots*10).toFixed(1)+' mini / '+Math.round(lots*100)+' micro';
+    var loss=lots*sl*pv;$('lot-loss').textContent=money(loss);
+    if(tp>0){$('lot-reward').textContent=money(lots*tp*pv);$('lot-rr').textContent='1 : '+(tp/sl).toFixed(2)}
+    else{$('lot-reward').textContent='\u2014';$('lot-rr').textContent='\u2014'}
+    var m=$('lot-meter');m.style.width=Math.min(100,rk/5*100)+'%';
+    m.style.background=rk<=2?'var(--green)':rk<=5?'var(--amber)':'var(--red)';
+    if(lots<0.01)setMsg('lot-msg','The exact size is '+exact.toFixed(4)+' lots, below the usual 0.01 minimum. A smaller stop loss, a larger balance or a lower-risk setup would be needed. Check your broker\'s minimum size.','warn');
+    else if(rk>5)setMsg('lot-msg','Risking more than 5% of your account on one trade is very aggressive. Many risk-management guides suggest keeping this small (commonly 1\u20132%).','bad');
+    else if(rk>2)setMsg('lot-msg','Many risk-management guides suggest keeping per-trade risk small (commonly 1\u20132%). This is educational information, not advice.','warn');
+    else setMsg('lot-msg','Exact size before rounding: '+exact.toFixed(4)+' lots.');
+  }
+  ['lot-bal','lot-risk','lot-pair','lot-price','lot-custom','lot-sl','lot-tp'].forEach(function(i){$(i).addEventListener('input',lot);$(i).addEventListener('change',lot)});
+  lot();
+
+  /* ----- Pip value ----- */
+  function pip(){
+    var pair=$('pip-pair').value;$('pip-pricef').hidden=!NEEDS_PRICE[pair];
+    var lots=num('pip-lots'),pv=pipPerLot(pair,num('pip-price'));
+    var ids=['pip-out','pip-std','pip-mini','pip-micro'];
+    if(!(pv>0)){ids.forEach(function(i){$(i).textContent='\u2014'});setMsg('pip-msg',NEEDS_PRICE[pair]?'Enter the current price of the pair to calculate the pip value.':'');return}
+    $('pip-out').textContent=lots>=0?money(pv*lots):'\u2014';
+    $('pip-std').textContent=money(pv);$('pip-mini').textContent=money(pv/10);$('pip-micro').textContent=money(pv/100);
+    setMsg('pip-msg','Values are in USD and use a pip of 0.0001 (0.01 for JPY pairs). Your broker may differ slightly.');
+  }
+  ['pip-pair','pip-lots','pip-price'].forEach(function(i){$(i).addEventListener('input',pip);$(i).addEventListener('change',pip)});
+  pip();
+
+  /* ----- Risk / reward ----- */
+  function rr(){
+    var r=num('rr-ratio'),w=num('rr-win');
+    if(!(r>0)||!(w>=0)||w>100){$('rr-be').textContent='\u2014';$('rr-exp').textContent='\u2014';$('rr-w').textContent='\u2014';setMsg('rr-msg','Enter a reward-to-risk ratio above 0 and a win rate between 0 and 100.');return}
+    var be=100/(1+r),exp=(w/100)*r-(1-w/100);
+    $('rr-be').textContent=be.toFixed(1)+'%';
+    $('rr-w').textContent=w.toFixed(1)+'%';
+    var e=$('rr-exp');e.textContent=(exp>=0?'+':'')+exp.toFixed(2)+' R';e.className=exp>=0?'pos':'neg';
+    setMsg('rr-msg',exp>=0
+      ?'With these inputs, the average trade would gain about '+exp.toFixed(2)+' R before costs. Real results depend on a tested win rate, spreads, slippage and discipline.'
+      :'With these inputs, the average trade would lose about '+Math.abs(exp).toFixed(2)+' R before costs. A higher ratio or a higher tested win rate would be needed to break even.',exp>=0?'':'warn');
+  }
+  ['rr-ratio','rr-win'].forEach(function(i){$(i).addEventListener('input',rr)});
+  rr();
+
+  /* ----- Drawdown ----- */
+  var ddt=$('dd-table');
+  [5,10,20,30,50,75].forEach(function(d){
+    var g=d/(100-d)*100,row=document.createElement('div');row.className='ddrow';
+    row.innerHTML='<span>\u2212'+d+'%</span><div class="bar"><i style="width:'+Math.min(100,g/3)+'%"></i></div><b>+'+g.toFixed(1)+'%</b>';ddt.appendChild(row);
+  });
+  function dd(){
+    var d=num('dd-pct');
+    if(!(d>=0)||d>=100){$('dd-out').textContent='\u2014';setMsg('dd-msg','Enter a drawdown between 0 and 99.9%.');return}
+    var g=d/(100-d)*100;$('dd-out').textContent='+'+g.toFixed(1)+'%';
+    setMsg('dd-msg','After a '+d+'% loss you need a gain of '+g.toFixed(1)+'% on the remaining balance to get back to where you started. This is why protecting capital matters.',d>=30?'warn':'');
+  }
+  $('dd-pct').addEventListener('input',dd);dd();
+})();
+</script>
+
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+const cv=document.getElementById('tools3d');
+if(cv){try{
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  let mx=0,my=0;addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  const GREEN=0x2ECC71,RED=0xE74C3C,CY=0x65e7ff,VI=0x9b83ff;
+  const r=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});r.setPixelRatio(Math.min(devicePixelRatio,2));
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(34,1,.1,100);cam.position.set(0,.8,15);
+  sc.add(new THREE.AmbientLight(0x9fb4ff,1.0));
+  const d=new THREE.DirectionalLight(0xffffff,2.2);d.position.set(4,6,8);sc.add(d);
+  const a=new THREE.PointLight(CY,90,40,2);a.position.set(-6,2,5);sc.add(a);
+  const b=new THREE.PointLight(VI,110,40,2);b.position.set(6,3,3);sc.add(b);
+  const box=new THREE.BoxGeometry(1,1,1),eg=new THREE.EdgesGeometry(box);
+  function candle(o,c,h,l,w){
+    const up=c>=o,col=up?GREEN:RED,lite=up?0xa6f5c8:0xffb4aa,g=new THREE.Group();
+    const bh=Math.max(.06,Math.abs(c-o)),mid=(o+c)/2-l;
+    const m=new THREE.MeshPhysicalMaterial({color:col,emissive:col,emissiveIntensity:.55,transparent:true,opacity:.72,roughness:.1,clearcoat:1});
+    const body=new THREE.Mesh(box,m);body.scale.set(w,bh,w);body.position.y=mid;g.add(body);
+    const e=new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:lite}));e.scale.copy(body.scale);e.position.copy(body.position);g.add(e);
+    const k=new THREE.Mesh(box,new THREE.MeshBasicMaterial({color:lite}));k.scale.set(.05,h-l,.05);k.position.y=(h-l)/2;g.add(k);
+    g.position.y=l;return g}
+  const G=new THREE.Group();sc.add(G);
+  const D=[[0,1,1.3,-.2],[1,.6,1.2,.4],[.6,1.7,2,.5],[1.7,2.5,2.8,1.6],[2.5,2.1,2.8,1.9],[2.1,3.3,3.6,2],[3.3,4,4.3,3.2]];
+  const S=.62,cs=D.map((x,i)=>{const c=candle(x[0]*S,x[1]*S,x[2]*S,x[3]*S,.5);c.position.set((i-3)*.9,-2.2,0);c.scale.y=.001;G.add(c);return c});
+  const grid=new THREE.GridHelper(12,12,CY,0x1e2a55);grid.position.y=-2.5;grid.material.transparent=true;grid.material.opacity=.4;G.add(grid);
+  /* coin */
+  const cc=document.createElement('canvas');cc.width=cc.height=256;const g2=cc.getContext('2d');
+  g2.fillStyle='#071433';g2.fillRect(0,0,256,256);g2.strokeStyle='#65e7ff';g2.lineWidth=12;g2.beginPath();g2.arc(128,128,106,0,7);g2.stroke();
+  g2.shadowColor='#65e7ff';g2.shadowBlur=24;g2.fillStyle='#65e7ff';g2.font='800 150px sans-serif';g2.textAlign='center';g2.textBaseline='middle';g2.fillText('$',128,140);
+  const tx=new THREE.CanvasTexture(cc);tx.colorSpace=THREE.SRGBColorSpace;
+  const side=new THREE.MeshStandardMaterial({color:CY,emissive:CY,emissiveIntensity:.5,metalness:.8,roughness:.3});
+  const face=new THREE.MeshStandardMaterial({map:tx,emissive:CY,emissiveIntensity:.25,metalness:.4,roughness:.4});
+  const coin=new THREE.Mesh(new THREE.CylinderGeometry(1.1,1.1,.2,48),[side,face,face]);coin.rotation.x=Math.PI/2;
+  const cg=new THREE.Group();cg.add(coin);cg.position.set(2.6,2.4,0);G.add(cg);
+  function sz(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();cam.position.z=w/h<1?19:15}
+  addEventListener('resize',sz);new ResizeObserver(sz).observe(cv);sz();
+  let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+  const t0=performance.now();let yaw=0,pit=0;
+  (function f(){requestAnimationFrame(f);if(!vis)return;
+    const t=(performance.now()-t0)/1000;
+    cs.forEach((c,i)=>{const p=reduce?1:clamp((t-.2-i*.1)/.8,0,1);c.scale.y=.001+(1-Math.pow(1-p,3))});
+    yaw+=((-.5+(reduce?0:Math.sin(t*.4)*.12+mx*.45))-yaw)*.06;pit+=(((reduce?0:my*.2)+.12)-pit)*.06;
+    G.rotation.y=yaw;G.rotation.x=pit;
+    if(!reduce){coin.rotation.z=t*1.1;cg.position.y=2.4+Math.sin(t*1.3)*.18}
+    r.render(sc,cam)})();
+}catch(e){console.warn('3D unavailable',e)}}
+</script>
 </body>
 </html>
+      
